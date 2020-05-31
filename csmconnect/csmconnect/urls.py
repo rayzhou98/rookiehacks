@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from scheduler.views import HomeView
+from scheduler import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeView.as_view(), name='home')
+    path('', HomeView.as_view(), name='home'),
+    path('signup', views.sign_up, name='sign_up'),
+    path('login', views.login, name='login')
 ]
