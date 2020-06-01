@@ -8,5 +8,5 @@ class SignUpForm(forms.Form):
     account_type = forms.ChoiceField(label='Choose account type:', choices=[('M', 'Mentor'), ('S', 'Student')])
 
 class LoginForm(forms.Form):
-    your_email = forms.EmailField(label='Your email:')
+    your_name = forms.CharField(label='Your name:', max_length=100)
     password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32)

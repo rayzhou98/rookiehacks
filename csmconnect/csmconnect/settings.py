@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import psycopg2
+# import psycopg2
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +27,8 @@ SECRET_KEY = '61_9p39+kjh)0m0t6%inglpq^ntd%nhw_8cd85^j-0u8pgjf=$'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 
 # Application definition
@@ -78,14 +80,14 @@ WSGI_APPLICATION = 'csmconnect.wsgi.application'
 #Note: add back postgresql database!
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'users',
-        'USER': 'admin',
-        'PASSWORD': 'test',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'users',
+        # 'USER': 'admin',
+        # 'PASSWORD': 'test',
+        # 'HOST': '127.0.0.1',
+        # 'PORT': '5432',
     }
 }
 
