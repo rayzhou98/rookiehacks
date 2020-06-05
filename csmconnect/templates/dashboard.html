@@ -1,2 +1,20 @@
-<h1> Username: {{ name }} </h1>
-<h1> Is mentor: {{ is_staff }} </h1>
+<h1> Welcome, {{ name }} </h1>
+<hr class="solid">
+<a class="add-meeting" href="addmeeting"> Add Meeting </a>
+<div class="meeting-list">
+  <h2> My Meetings: </h2>
+  <ol>
+    {% for meeting in meetings %}
+    <li> Date: {{ meeting.0 }}
+      <br></br>
+      Time: {{ meeting.1 }}
+      <br></br>
+      Location: {{ meeting.2 }}
+      <br></br>
+      Description: {{ meeting.3 }}
+      <br></br>
+      <a class="edit-event" href="editmeeting/{{ meeting.4 }}"> Edit Meeting </a>
+    </li>
+   {% endfor %}
+  </ol>
+</div>

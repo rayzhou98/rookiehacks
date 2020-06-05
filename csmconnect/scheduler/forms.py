@@ -10,3 +10,9 @@ class SignUpForm(forms.Form):
 class LoginForm(forms.Form):
     your_name = forms.CharField(label='Your name:', max_length=100)
     password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32)
+
+class AddMeetingForm(forms.Form):
+    date = forms.DateField(label="Meeting date:", help_text="MM/DD/YYYY")
+    time = forms.TimeField(label="Meeting time:", help_text="HH:MM")
+    location = forms.CharField(label="Location:", widget=forms.Textarea)
+    description = forms.CharField(label="Description:", widget=forms.Textarea)
