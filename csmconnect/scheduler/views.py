@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from .forms import SignUpForm, LoginForm, AddMeetingForm
 from .models import Meeting
 from django.http import HttpResponseRedirect
@@ -90,4 +90,8 @@ class EditMeeting(UpdateView):
     model = Meeting
     fields = ['date', 'time', 'location', 'description']
     template_name_suffix = '_update_form'
+    success_url = "/dashboard"
+
+class DeleteMeeting(DeleteView):
+    model = Meeting
     success_url = "/dashboard"

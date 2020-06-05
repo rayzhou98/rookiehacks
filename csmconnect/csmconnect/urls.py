@@ -26,5 +26,6 @@ urlpatterns = [
     path('signupsuccess', views.signupsuccess, name='signupsuccess'),
     path('dashboard', views.dashboard, name='dashboard'),
     path('addmeeting', views.add_meeting, name='addmeeting'),
-    path('editmeeting/<int:pk>', views.EditMeeting.as_view(), name="editmeeting")
+    path('editmeeting/<int:pk>', views.EditMeeting.as_view(), name="editmeeting"), 
+    path('deletemeeting/<int:pk>', views.DeleteMeeting.as_view(), name="deletemeeting")
 ]
