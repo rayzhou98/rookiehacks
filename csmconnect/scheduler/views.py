@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.contrib.contenttypes.models import ContentType
 from django.views.generic.edit import UpdateView, DeleteView
 from .forms import SignUpForm, LoginForm, AddMeetingForm
 from .models import Meeting
 from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User, Permission
+from django.contrib.auth.models import Group, User, Permission
 from django.db import models
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -24,16 +25,22 @@ def sign_up(request):
             content_type = ContentType.objects.get_for_model(Meeting)
             if is_mentor:
                 add_permission = Permission.objects.get(codename='add_meeting', content_type=content_type)
-                edit_permission = Permission.objects.get(codename='edit_meeting', content_type=content_type)
+                edit_permission = Permission.objects.get(codename='change_meeting', content_type=content_type)
                 delete_permission = Permission.objects.get(codename='delete_meeting', content_type=content_type)
                 view_permission = Permission.objects.get(codename='view_meeting', content_type=content_type)
-                group = models.Group('Mentor', permissions=[add_permission, edit_permission, delete_permission, view_permission])
+                group = Group(name='Mentor')
             else:
                 view_permission = Permission.objects.get(codename='view_meeting', content_type=content_type)
                 join_permission = Permission.objects.get(codename='join_meeting', content_type=content_type)
                 leave_permission = Permission.objects.get(codename='leave_meeting', content_type=content_type)
-                group = models.Group('Student', permissions=[view_permission, join_permission, leave_permission])
-            user = User.objects.create_user(form.cleaned_data['your_name'], form.cleaned_data['your_email'],  form.cleaned_data['password'], groups=group)
+                group = Group(name='Student')
+            user = User.objects.create_user(username=form.cleaned_data['your_name'], email=form.cleaned_data['your_email'],  password=form.cleaned_data['password'])
+            group.save()
+            user.groups.add(group)
+            if is_mentor:
+                group.permissions.set([add_permission, edit_permission, delete_permission, view_permission])
+            else:
+                group.permissions.set([view_permission, join_permission, leave_permission])
             return HttpResponseRedirect('signupsuccess')
 
     # if a GET (or any other method) we'll create a blank form
@@ -67,12 +74,14 @@ def signupsuccess(request):
 
 def dashboard(request):
     #Get all meetings corresponding to the user.
-    meetings = Meeting.objects.filter(mentor=request.user)
-    if len(meetings) == 0:
-        meetings_elements = "No meetings to show."
+    is_mentor = request.user.groups.filter(name="Mentor").exists()
+    if is_mentor:
+        meetings = Meeting.objects.filter(mentor=request.user)
     else:
-        meetings_elements = list(map(lambda meeting:  [meeting.date.strftime("%m/%d/%Y"),  meeting.time.strftime("%H:%M"),  meeting.location , meeting.description, meeting.id], meetings))
-    return render(request, 'dashboard.html', {'name': request.user.username, 'meetings': meetings_elements})
+        meetings = Meeting.objects.filter(student=request.user)
+    if len(meetings) != 0:
+        meetings = list(map(lambda meeting:  [meeting.date.strftime("%m/%d/%Y"),  meeting.time.strftime("%H:%M"),  meeting.location , meeting.description, meeting.id, meeting.student, meeting.mentor], meetings))
+    return render(request, 'dashboard.html', {'name': request.user.username, 'meetings': meetings, 'is_mentor': is_mentor})
 
 def add_meeting(request):
     if request.method == 'POST':
@@ -83,8 +92,24 @@ def add_meeting(request):
             meeting.save()
             return HttpResponseRedirect('dashboard')
     else:
-        form = AddMeetingForm()
-    return render(request, 'addmeeting.html', {'form': form, })
+        is_mentor = request.user.groups.filter(name="Mentor").exists()
+        if is_mentor:
+            form = AddMeetingForm()
+            return render(request, 'addmeeting.html', {'form': form})
+        else:
+            open_meetings = Meeting.objects.filter(student=None)
+            if len(open_meetings) != 0:
+                open_meetings = list(map(lambda meeting:  [meeting.date.strftime("%m/%d/%Y"),  meeting.time.strftime("%H:%M"),  meeting.location , meeting.description, meeting.id, meeting.mentor], open_meetings))
+            return render(request, 'view_open_meetings.html', {'meetings': open_meetings, 'name': request.user.username})
+
+def join_meeting(request, pk):
+    meeting = Meeting.objects.get(id=pk)
+    if request.method == "POST":
+        meeting.student = request.user
+        meeting.save()
+        return HttpResponseRedirect('/dashboard')
+    else:
+        return render(request, 'join_meeting_confirm.html', {'meeting_date': meeting.date.strftime("%m/%d/%Y"), 'meeting_time': meeting.time.strftime("%H:%M"), 'meeting_location': meeting.location, 'meeting_id': pk})
 
 class EditMeeting(UpdateView):
     model = Meeting
@@ -95,3 +120,19 @@ class EditMeeting(UpdateView):
 class DeleteMeeting(DeleteView):
     model = Meeting
     success_url = "/dashboard"
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('logoutsuccess')
+
+def logout_success(request):
+    return render(request, 'logout_success.html')
+
+def leave_meeting(request, pk):
+    meeting = Meeting.objects.get(id=pk)
+    if request.method == "POST":
+        meeting.student = None
+        meeting.save()
+        return HttpResponseRedirect('/dashboard')
+    else:
+        return render(request, 'leave_meeting_confirm.html', {'meeting_date': meeting.date.strftime("%m/%d/%Y"), 'meeting_time': meeting.time.strftime("%H:%M"), 'meeting_location': meeting.location, 'meeting_id': pk})

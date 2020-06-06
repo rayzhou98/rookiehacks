@@ -26,6 +26,10 @@ urlpatterns = [
     path('signupsuccess', views.signupsuccess, name='signupsuccess'),
     path('dashboard', views.dashboard, name='dashboard'),
     path('addmeeting', views.add_meeting, name='addmeeting'),
-    path('editmeeting/<int:pk>', views.EditMeeting.as_view(), name="editmeeting"), 
-    path('deletemeeting/<int:pk>', views.DeleteMeeting.as_view(), name="deletemeeting")
+    path('editmeeting/<int:pk>', views.EditMeeting.as_view(), name="editmeeting"),
+    path('deletemeeting/<int:pk>', views.DeleteMeeting.as_view(), name="deletemeeting"),
+    path('logout', views.logout_view, name="logout"),
+    path('logoutsuccess', views.logout_success, name="logoutsuccess"),
+    path('joinmeeting/<int:pk>', views.join_meeting, name="joinmeeting"),
+    path('leavemeeting/<int:pk>', views.leave_meeting, name="leavemeeting")
 ]

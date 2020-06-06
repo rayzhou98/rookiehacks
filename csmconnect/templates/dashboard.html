@@ -3,20 +3,39 @@
 <a class="add-meeting" href="addmeeting"> Add Meeting </a>
 <div class="meeting-list">
   <h2> My Meetings: </h2>
-  <ol>
-    {% for meeting in meetings %}
-    <li> Date: {{ meeting.0 }}
-      <br></br>
-      Time: {{ meeting.1 }}
-      <br></br>
-      Location: {{ meeting.2 }}
-      <br></br>
-      Description: {{ meeting.3 }}
-      <br></br>
-      <a class="edit-event" href="editmeeting/{{ meeting.4 }}"> Edit Meeting </a>
-      <br></br>
-      <a class="delete-event" href="deletemeeting/{{ meeting.4 }}"> Delete Meeting </a>
-    </li>
-   {% endfor %}
-  </ol>
+  {% if meetings %}
+    <ol>
+      {% for meeting in meetings %}
+      <li> Date: {{ meeting.0 }}
+        <br></br>
+        Time: {{ meeting.1 }}
+        <br></br>
+        Location: {{ meeting.2 }}
+        <br></br>
+        Description: {{ meeting.3 }}
+        <br></br>
+        {% if is_mentor and meeting.5 %}
+          Student: {{ meeting.5.username }}
+        {% elif is_mentor %}
+          No students signed up.
+        {% else %}
+          Mentor: {{ meeting.6.username }}
+        {% endif %}
+        <br></br>
+        {% if is_mentor %}
+          <a class="edit-event" href="editmeeting/{{ meeting.4 }}"> Edit Meeting </a>
+          <br></br>
+          <a class="delete-event" href="deletemeeting/{{ meeting.4 }}"> Delete Meeting </a>
+        {% else %}
+          <a class="leave-event" href="leavemeeting/{{ meeting.4 }}"> Leave Meeting </a>
+          <br></br>
+        {% endif %}
+      </li>
+     {% endfor %}
+    </ol>
+  {% else %}
+    <h2> No meetings to show. <h2>
+  {% endif %}
 </div>
+<hr class="solid">
+<a class="log-out" href="logout"> Logout </a>

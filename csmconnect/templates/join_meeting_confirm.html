@@ -1,0 +1,7 @@
+<form action="{{ meeting_id }}" method="post">
+  {% csrf_token %}
+  <h1> Are you sure you want to join the meeting on {{ meeting_date }}, {{ meeting_time }} at {{ meeting_location }}? </h1>
+  <input type="submit" value="Yes">
+  <br></br>
+  <input type="button" value="Go back" onclick="history.back()">
+</form>
