@@ -1,10 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from csmconnect import settings
+import datetime
 
 # Create your models here.
 class Meeting(models.Model):
-    date = models.fields.DateField()
-    time = models.fields.TimeField()
+    dates = []
+    for i in range(7):
+        date = datetime.datetime.now(tz=datetime.timezone(-datetime.timedelta(hours=8))) + datetime.timedelta(days=i)
+        dates.append((date.strftime('%a, %b %d').replace(' 0', ''), date.strftime('%a, %b %d').replace(' 0', '')))
+    date = models.fields.CharField(max_length=20, choices=dates)
+    start_time = models.fields.TimeField()
+    end_time = models.fields.TimeField()
     location = models.fields.TextField()
     mentor = models.ForeignKey(User, on_delete=models.CASCADE, related_name="Mentor")
     student = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)

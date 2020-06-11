@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'scheduler/styles/meetingdetails.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  {% include 'frontend/header.html' %}
+  <hr class="solid">
+  <div class="meeting-details">
+    <div class="page-title"> Meeting Details </div>
+    <br></br>
+    <div class="meeting-item"> Meeting date: {{ meeting_date }} </div>
+    <div class="meeting-item"> Time: {{ start_time }}-{{ end_time }}</div>
+    <div class="meeting-item"> Location: {{ meeting_location }} </div>
+    <div class="meeting-item"> Description: {{ description }} </div>
+    {% if is_mentor %}
+      {% if student %}
+        <div class="student-mentor-info">
+          <div class="meeting-item"> Student: {{ student.username }} </div>
+          <a class="detail-button email-button" href="mailto:{{student.email}}"> EMAIL </a>
+        </div>
+      {% else %}
+        <div class="meeting-item"> No student assigned. </div>
+      {% endif %}
+    {% else %}
+    <div class="student-mentor-info">
+      <div class="meeting-item"> Mentor: {{ mentor.username }} </div>
+      <a class="detail-button email-button" href="mailto:{{mentor.email}}"> EMAIL </a>
+    </div>
+    {% endif %}
+    <br></br>
+    <div class="edit-delete">
+      <a class="detail-button edit-button" href="/editmeeting/{{ id }}"> Edit </a>
+      <a class="detail-button delete-button" href="/deletemeeting/{{ id }}"> Delete </a>
+    </div>
+  </div>
+</body>
+</html>

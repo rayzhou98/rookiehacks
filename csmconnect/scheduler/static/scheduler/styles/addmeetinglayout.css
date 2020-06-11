@@ -1,0 +1,58 @@
+body {
+  color:  #7167B9;
+  font-family: 'Roboto', sans-serif;
+}
+
+.add-meeting {
+   font-size: 24px;
+}
+
+input, textarea {
+  border-color: #7167B9;
+  border-width: 3px;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-right: 50px;
+}
+
+.date-time {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-right: 50px;
+}
+
+
+.location-description {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.submit {
+  background-color: #7167B9;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.errorlist {
+  list-style: none
+}
+
+li {
+  margin-right: 10px;
+}

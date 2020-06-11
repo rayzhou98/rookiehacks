@@ -72,34 +72,27 @@ def login_view(request):
 def signupsuccess(request):
     return render(request, 'signupsuccess.html')
 
-def dashboard(request):
-    #Get all meetings corresponding to the user.
-    is_mentor = request.user.groups.filter(name="Mentor").exists()
-    if is_mentor:
-        meetings = Meeting.objects.filter(mentor=request.user)
-    else:
-        meetings = Meeting.objects.filter(student=request.user)
-    if len(meetings) != 0:
-        meetings = list(map(lambda meeting:  [meeting.date.strftime("%m/%d/%Y"),  meeting.time.strftime("%H:%M"),  meeting.location , meeting.description, meeting.id, meeting.student, meeting.mentor], meetings))
-    return render(request, 'dashboard.html', {'name': request.user.username, 'meetings': meetings, 'is_mentor': is_mentor})
-
 def add_meeting(request):
     if request.method == 'POST':
         form = AddMeetingForm(request.POST)
         if form.is_valid():
             #Create new meeting model, and save to database.
-            meeting = Meeting(date=form.cleaned_data['date'], time=form.cleaned_data['time'], location=form.cleaned_data['location'], mentor=request.user, description=form.cleaned_data['description'])
+            meeting = Meeting(date=form.cleaned_data['date'], start_time=form.cleaned_data['start_time'], end_time=form.cleaned_data['end_time'], location=form.cleaned_data['location'], mentor=request.user, description=form.cleaned_data['description'])
             meeting.save()
             return HttpResponseRedirect('dashboard')
+        else:
+            non_field_errors = form.non_field_errors()
+            print(non_field_errors)
+            return render(request, 'addmeeting.html', {'form': form, 'name': request.user.username, 'non_field_errors': non_field_errors})
     else:
         is_mentor = request.user.groups.filter(name="Mentor").exists()
         if is_mentor:
             form = AddMeetingForm()
-            return render(request, 'addmeeting.html', {'form': form})
+            return render(request, 'addmeeting.html', {'form': form, 'name': request.user.username})
         else:
             open_meetings = Meeting.objects.filter(student=None)
             if len(open_meetings) != 0:
-                open_meetings = list(map(lambda meeting:  [meeting.date.strftime("%m/%d/%Y"),  meeting.time.strftime("%H:%M"),  meeting.location , meeting.description, meeting.id, meeting.mentor], open_meetings))
+                open_meetings = list(map(lambda meeting:  [meeting.date.strftime("%-m/%d/%Y"),  meeting.time.strftime("%-I:%M %p"),  meeting.time.strftime("%-I:%M %p"), meeting.location , meeting.description, meeting.id, meeting.mentor], open_meetings))
             return render(request, 'view_open_meetings.html', {'meetings': open_meetings, 'name': request.user.username})
 
 def join_meeting(request, pk):
@@ -136,3 +129,11 @@ def leave_meeting(request, pk):
         return HttpResponseRedirect('/dashboard')
     else:
         return render(request, 'leave_meeting_confirm.html', {'meeting_date': meeting.date.strftime("%m/%d/%Y"), 'meeting_time': meeting.time.strftime("%H:%M"), 'meeting_location': meeting.location, 'meeting_id': pk})
+
+def meeting_details(request, pk):
+    meeting = Meeting.objects.get(id=pk)
+    is_mentor = request.user.groups.filter(name="Mentor").exists()
+    if is_mentor:
+        return render(request, 'meeting_details.html', {'name': request.user.username, 'meeting_date': meeting.date, 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'meeting_location': meeting.location, 'description': meeting.description, 'student': meeting.student, 'is_mentor': is_mentor, 'id': pk})
+    else:
+        return render(request, 'meeting_details.html', {'name': request.user.username, 'meeting_date': meeting.date, 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'meeting_location': meeting.location, 'description': meeting.description, 'mentor': meeting.mentor, 'is_mentor': is_mentor, 'id': pk})

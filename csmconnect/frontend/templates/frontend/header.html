@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'frontend/styles/header.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="header-container">
+    <a href="/dashboard">
+      <img class="logo" src="{% static 'scheduler/images/logo.png' %}"></img>
+    </a>
+    <h1 class="title"> Welcome, {{ name }}! </h1>
+    <a class="button" href="logout"> Log Out </a>
+  </div>
+</body>
+</html>

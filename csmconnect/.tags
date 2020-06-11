@@ -1,0 +1,195 @@
+.header-container	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/static/scheduler/styles/dashboardlayout.css	/^.header-container {$/;"	function	line:1
+.logo	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/static/scheduler/styles/dashboardlayout.css	/^.logo {$/;"	function	line:6
+.title	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/static/scheduler/styles/dashboardlayout.css	/^.title {$/;"	function	line:12
+.logout	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/static/scheduler/styles/dashboardlayout.css	/^.logout {$/;"	function	line:20
+.grid-container	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/static/scheduler/styles/dashboardlayout.css	/^.grid-container {$/;"	function	line:35
+.grid-item	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/static/scheduler/styles/dashboardlayout.css	/^.grid-item {$/;"	function	line:42
+.time	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/static/scheduler/styles/dashboardlayout.css	/^.time {$/;"	function	line:47
+html	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^<html lang="en">$/;"	function	line:2
+head	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^<head>$/;"	function	line:3
+link	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^<link rel="stylesheet" href="{% static 'scheduler\/styles\/dashboardlayout.css' %}">$/;"	function	line:5
+link	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^<link href="https:\/\/fonts.googleapis.com\/css2?family=Roboto&display=swap" rel="stylesheet">$/;"	function	line:6
+body	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^<body>$/;"	function	line:8
+div	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^  <div class="header-container">$/;"	function	line:9
+img	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^    <img class="logo" src="{% static 'scheduler\/images\/logo.png' %}"><\/img>$/;"	function	line:10
+h	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^    <h1 class="title"> Welcome, {{ name }}! <\/h1>$/;"	function	line:11
+a	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^    <a class="logout" href="logout"> Log Out <\/a>$/;"	function	line:12
+hr	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^  <hr class="solid">$/;"	function	line:14
+a	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^  <a class="add-meeting" href="addmeeting"> Add Meeting <\/a>$/;"	function	line:15
+div	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^  <div class="meeting-list">$/;"	function	line:16
+h	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^    <h2> My Meetings: <\/h2>$/;"	function	line:17
+ol	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^      <ol>$/;"	function	line:19
+li	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^        <li> Date: {{ meeting.0 }}$/;"	function	line:21
+br	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^          <br><\/br>$/;"	function	line:22
+br	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^          <br><\/br>$/;"	function	line:24
+br	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^          <br><\/br>$/;"	function	line:26
+br	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^          <br><\/br>$/;"	function	line:28
+br	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^          <br><\/br>$/;"	function	line:36
+a	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^            <a class="edit-event" href="editmeeting\/{{ meeting.4 }}"> Edit Meeting <\/a>$/;"	function	line:38
+br	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^            <br><\/br>$/;"	function	line:39
+a	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^            <a class="delete-event" href="deletemeeting\/{{ meeting.4 }}"> Delete Meeting <\/a>$/;"	function	line:40
+br	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^            <br><\/br>$/;"	function	line:41
+a	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^            <a class="leave-event" href="leavemeeting\/{{ meeting.4 }}"> Leave Meeting <\/a>$/;"	function	line:43
+br	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^            <br><\/br>$/;"	function	line:44
+h	/Users/katiegu/Documents/rookiehacks/csmconnect/templates/dashboard.html	/^      <h2> No meetings to show. <h2>$/;"	function	line:50
+name	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^  "name": "frontend",$/;"	function	line:2
+version	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^  "version": "1.0.0",$/;"	function	line:3
+description	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^  "description": "",$/;"	function	line:4
+main	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^  "main": "index.js",$/;"	function	line:5
+scripts	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^  "scripts": {$/;"	function	line:6
+dev	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^    "dev": "webpack --mode development .\/src\/index.js --output .\/static\/frontend\/main.js",$/;"	function	line:7
+build	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^    "build": "webpack --mode production .\/src\/index.js --output .\/static\/frontend\/main.js"$/;"	function	line:8
+keywords	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^  "keywords": [],$/;"	function	line:10
+author	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^  "author": "",$/;"	function	line:11
+license	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^  "license": "ISC",$/;"	function	line:12
+devDependencies	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^  "devDependencies": {$/;"	function	line:13
+webpack	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^    "webpack": "^4.43.0",$/;"	function	line:14
+webpack-cli	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/package.json	/^    "webpack-cli": "^3.3.11"$/;"	function	line:15
+module.exports.module	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/webpack.config.js	/^module.exports = {$/;"	property	line:1
+.header-container	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/dashboardlayout.css	/^.header-container {$/;"	function	line:1
+.logo	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/dashboardlayout.css	/^.logo {$/;"	function	line:6
+.title	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/dashboardlayout.css	/^.title {$/;"	function	line:12
+.logout	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/dashboardlayout.css	/^.logout {$/;"	function	line:20
+.grid-container	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/dashboardlayout.css	/^.grid-container {$/;"	function	line:35
+.grid-item	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/dashboardlayout.css	/^.grid-item {$/;"	function	line:42
+.time	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/dashboardlayout.css	/^.time {$/;"	function	line:47
+path	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/urls.py	/^from django.urls import path$/;"	namespace	line:1
+views	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/urls.py	/^from . import views$/;"	namespace	line:2
+urlpatterns	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/urls.py	/^urlpatterns = [$/;"	variable	line:5
+admin	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/urls.py	/^from django.contrib import admin$/;"	namespace	line:16
+path	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/urls.py	/^from django.urls import path, include$/;"	namespace	line:17
+include	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/urls.py	/^from django.urls import path, include$/;"	namespace	line:17
+HomeView	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/urls.py	/^from scheduler.views import HomeView$/;"	namespace	line:18
+views	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/urls.py	/^from scheduler import views$/;"	namespace	line:19
+urlpatterns	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/urls.py	/^urlpatterns = [$/;"	variable	line:21
+.header-container	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/styles/dashboardlayout.css	/^.header-container {$/;"	function	line:1
+.logo	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/styles/dashboardlayout.css	/^.logo {$/;"	function	line:6
+.title	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/styles/dashboardlayout.css	/^.title {$/;"	function	line:12
+.logout	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/styles/dashboardlayout.css	/^.logout {$/;"	function	line:20
+.grid-container	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/styles/dashboardlayout.css	/^.grid-container {$/;"	function	line:35
+.grid-element	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/styles/dashboardlayout.css	/^.grid-element {$/;"	function	line:45
+.time	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/styles/dashboardlayout.css	/^.time {$/;"	function	line:51
+.day-of-week	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/static/frontend/styles/dashboardlayout.css	/^.day-of-week {$/;"	function	line:55
+models	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^from django.db import models$/;"	namespace	line:1
+User	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^from django.contrib.auth.models import User$/;"	namespace	line:2
+Meeting	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^class Meeting(models.Model):$/;"	class	line:5
+date	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^    date = models.fields.DateField()$/;"	variable	line:6	class:Meeting
+start_time	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^    start_time = models.fields.TimeField()$/;"	variable	line:7	class:Meeting
+end_time	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^    end_time = models.fields.TimeField()$/;"	variable	line:8	class:Meeting
+location	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^    location = models.fields.TextField()$/;"	variable	line:9	class:Meeting
+mentor	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^    mentor = models.ForeignKey(User, on_delete=models.CASCADE, related_name="Mentor")$/;"	variable	line:10	class:Meeting
+student	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^    student = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)$/;"	variable	line:11	class:Meeting
+description	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^    description = models.fields.TextField()$/;"	variable	line:12	class:Meeting
+Meta	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^    class Meta:$/;"	class	line:13	class:Meeting
+permissions	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/models.py	/^        permissions = [$/;"	variable	line:14	class:Meeting.Meta
+render	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.shortcuts import render$/;"	namespace	line:1
+TemplateView	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.views.generic import TemplateView$/;"	namespace	line:2
+ContentType	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.contrib.contenttypes.models import ContentType$/;"	namespace	line:3
+UpdateView	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.views.generic.edit import UpdateView, DeleteView$/;"	namespace	line:4
+DeleteView	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.views.generic.edit import UpdateView, DeleteView$/;"	namespace	line:4
+SignUpForm	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from .forms import SignUpForm, LoginForm, AddMeetingForm$/;"	namespace	line:5
+LoginForm	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from .forms import SignUpForm, LoginForm, AddMeetingForm$/;"	namespace	line:5
+AddMeetingForm	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from .forms import SignUpForm, LoginForm, AddMeetingForm$/;"	namespace	line:5
+Meeting	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from .models import Meeting$/;"	namespace	line:6
+HttpResponseRedirect	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.http import HttpResponseRedirect$/;"	namespace	line:7
+Group	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.contrib.auth.models import Group, User, Permission$/;"	namespace	line:8
+User	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.contrib.auth.models import Group, User, Permission$/;"	namespace	line:8
+Permission	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.contrib.auth.models import Group, User, Permission$/;"	namespace	line:8
+models	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.db import models$/;"	namespace	line:9
+authenticate	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.contrib.auth import authenticate, login, logout$/;"	namespace	line:10
+login	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.contrib.auth import authenticate, login, logout$/;"	namespace	line:10
+logout	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^from django.contrib.auth import authenticate, login, logout$/;"	namespace	line:10
+HomeView	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^class HomeView(TemplateView):$/;"	class	line:13
+template_name	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^    template_name = "basic-88\/index.html"$/;"	variable	line:14	class:HomeView
+sign_up	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^def sign_up(request):$/;"	function	line:16
+login_view	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^def login_view(request):$/;"	function	line:52
+signupsuccess	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^def signupsuccess(request):$/;"	function	line:72
+add_meeting	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^def add_meeting(request):$/;"	function	line:75
+join_meeting	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^def join_meeting(request, pk):$/;"	function	line:94
+EditMeeting	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^class EditMeeting(UpdateView):$/;"	class	line:103
+model	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^    model = Meeting$/;"	variable	line:104	class:EditMeeting
+fields	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^    fields = ['date', 'time', 'location', 'description']$/;"	variable	line:105	class:EditMeeting
+template_name_suffix	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^    template_name_suffix = '_update_form'$/;"	variable	line:106	class:EditMeeting
+success_url	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^    success_url = "\/dashboard"$/;"	variable	line:107	class:EditMeeting
+DeleteMeeting	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^class DeleteMeeting(DeleteView):$/;"	class	line:109
+model	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^    model = Meeting$/;"	variable	line:110	class:DeleteMeeting
+success_url	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^    success_url = "\/dashboard"$/;"	variable	line:111	class:DeleteMeeting
+logout_view	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^def logout_view(request):$/;"	function	line:113
+logout_success	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^def logout_success(request):$/;"	function	line:117
+leave_meeting	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/views.py	/^def leave_meeting(request, pk):$/;"	function	line:120
+forms	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^from django import forms$/;"	namespace	line:1
+SignUpForm	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^class SignUpForm(forms.Form):$/;"	class	line:3
+your_name	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    your_name = forms.CharField(label='Your name:', max_length=100)$/;"	variable	line:4	class:SignUpForm
+your_email	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    your_email = forms.EmailField(label='Your email:')$/;"	variable	line:5	class:SignUpForm
+password	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32)$/;"	variable	line:6	class:SignUpForm
+account_type	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    account_type = forms.ChoiceField(label='Choose account type:', choices=[('M', 'Mentor'), ('S', 'Student')])$/;"	variable	line:8	class:SignUpForm
+LoginForm	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^class LoginForm(forms.Form):$/;"	class	line:10
+your_name	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    your_name = forms.CharField(label='Your name:', max_length=100)$/;"	variable	line:11	class:LoginForm
+password	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32)$/;"	variable	line:12	class:LoginForm
+AddMeetingForm	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^class AddMeetingForm(forms.Form):$/;"	class	line:14
+date	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    date = forms.DateField(label="Meeting date:", help_text="MM\/DD\/YYYY")$/;"	variable	line:15	class:AddMeetingForm
+start_time	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    start_time = forms.TimeField(label="Meeting start time:", help_text="HH:MM am or pm")$/;"	variable	line:16	class:AddMeetingForm
+end_time	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    end_time = forms.TimeField(label="Meeting end time:", help_text="HH:MM am or pm")$/;"	variable	line:17	class:AddMeetingForm
+location	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    location = forms.CharField(label="Location:", widget=forms.Textarea)$/;"	variable	line:18	class:AddMeetingForm
+description	/Users/katiegu/Documents/rookiehacks/csmconnect/scheduler/forms.py	/^    description = forms.CharField(label="Description:", widget=forms.Textarea)$/;"	variable	line:19	class:AddMeetingForm
+os	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^import os$/;"	namespace	line:13
+BASE_DIR	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	variable	line:17
+DEBUG	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^DEBUG = True$/;"	variable	line:27
+ALLOWED_HOSTS	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^ALLOWED_HOSTS = []$/;"	variable	line:29
+AUTHENTICATION_BACKENDS	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']$/;"	variable	line:31
+INSTALLED_APPS	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^INSTALLED_APPS = [$/;"	variable	line:36
+MIDDLEWARE	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^MIDDLEWARE = [$/;"	variable	line:47
+ROOT_URLCONF	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^ROOT_URLCONF = 'csmconnect.urls'$/;"	variable	line:57
+TEMPLATES	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^TEMPLATES = [$/;"	variable	line:59
+WSGI_APPLICATION	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^WSGI_APPLICATION = 'csmconnect.wsgi.application'$/;"	variable	line:75
+DATABASES	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^DATABASES = {$/;"	variable	line:82
+AUTH_PASSWORD_VALIDATORS	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	variable	line:99
+LANGUAGE_CODE	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	variable	line:118
+TIME_ZONE	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^TIME_ZONE = 'UTC'$/;"	variable	line:120
+USE_I18N	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^USE_I18N = True$/;"	variable	line:122
+USE_L10N	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^USE_L10N = True$/;"	variable	line:124
+USE_TZ	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^USE_TZ = True$/;"	variable	line:126
+STATIC_URL	/Users/katiegu/Documents/rookiehacks/csmconnect/csmconnect/settings.py	/^STATIC_URL = '\/static\/'$/;"	variable	line:133
+html	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^<html lang="en">$/;"	function	line:2
+head	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^<head>$/;"	function	line:3
+link	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^<link rel="stylesheet" href="{% static 'frontend\/styles\/dashboardlayout.css' %}">$/;"	function	line:5
+link	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^<link href="https:\/\/fonts.googleapis.com\/css2?family=Roboto&display=swap" rel="stylesheet">$/;"	function	line:6
+body	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^<body>$/;"	function	line:8
+div	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^  <div class="header-container">$/;"	function	line:9
+img	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^    <img class="logo" src="{% static 'scheduler\/images\/logo.png' %}"><\/img>$/;"	function	line:10
+h	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^    <h1 class="title"> Welcome, {{ name }}! <\/h1>$/;"	function	line:11
+a	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^    <a class="logout" href="logout"> Log Out <\/a>$/;"	function	line:12
+hr	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^  <hr class="solid">$/;"	function	line:14
+a	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^  <a class="add-meeting" href="addmeeting"> Add Meeting <\/a>$/;"	function	line:15
+div	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^  <div id="calendar">$/;"	function	line:16
+script	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/templates/frontend/dashboard.html	/^<script src="{% static 'frontend\/main.js' %}" meetings= {{meetings}}><\/script>$/;"	function	line:21
+constructor	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^   constructor(props) {$/;"	function	line:5
+parseTime	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^   parseTime(time) {$/;"	function	line:9
+minuteSuffix	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var minuteSuffix = time[1].split(" ");$/;"	variable	line:11
+hour	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var hour = time[0].parseInt();$/;"	variable	line:12
+minute	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var minute = minuteSuffix[0].parseInt();$/;"	variable	line:16
+render	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^   render() {$/;"	function	line:55
+width	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var width = "100%";$/;"	variable	line:58
+startHour	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var startHour = parsedStartTime[0];$/;"	variable	line:62
+startMinute	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var startMinute = parsedStartTime[1];$/;"	variable	line:63
+startRow	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var startRow = startHour - 7;$/;"	variable	line:64
+endHour	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var endHour = parsedEndTime[0];$/;"	variable	line:67
+endtMinute	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var endtMinute = parsedEndTime[1];$/;"	variable	line:68
+span	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var span = endHour - startHour;$/;"	variable	line:69
+position	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var position = "relative";$/;"	variable	line:71
+bottom	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var bottom = 100 - ((startMinute\/60) * 100);$/;"	variable	line:73
+zIndex	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^     var zIndex = 0;$/;"	variable	line:74
+constructor	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^  constructor(props) {$/;"	function	line:103
+options.weekday	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^    var options = { weekday: 'short', month: 'short', day: 'numeric'};$/;"	property	line:106
+options.month	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^    var options = { weekday: 'short', month: 'short', day: 'numeric'};$/;"	property	line:106
+options.day	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^    var options = { weekday: 'short', month: 'short', day: 'numeric'};$/;"	property	line:106
+times	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^    var times = [];$/;"	variable	line:113
+hour	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^    var hour = 7;$/;"	variable	line:114
+state.meetings	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^    this.state = {$/;"	property	line:126
+renderEvent	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^  renderEvent(event) {$/;"	function	line:133
+loadEvents	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^  loadEvents() {$/;"	function	line:145
+render	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/src/components/calendarapp.js	/^   render() {$/;"	function	line:153
+render	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/views.py	/^from django.shortcuts import render$/;"	namespace	line:1
+Meeting	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/views.py	/^from scheduler.models import Meeting$/;"	namespace	line:2
+json	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/views.py	/^import json$/;"	namespace	line:3
+dashboard	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/views.py	/^def dashboard(request):$/;"	function	line:6

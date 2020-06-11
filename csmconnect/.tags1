@@ -1,0 +1,10 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+render	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/views.py	/^from django.shortcuts import render$/;"	namespace	line:1
+Meeting	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/views.py	/^from scheduler.models import Meeting$/;"	namespace	line:2
+json	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/views.py	/^import json$/;"	namespace	line:3
+dashboard	/Users/katiegu/Documents/rookiehacks/csmconnect/frontend/views.py	/^def dashboard(request):$/;"	function	line:6
