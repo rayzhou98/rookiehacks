@@ -8,6 +8,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group, User, Permission
 from django.db import models
 from django.contrib.auth import authenticate, login, logout
+from django.template import RequestContext
+import json
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -83,17 +85,17 @@ def add_meeting(request):
         else:
             non_field_errors = form.non_field_errors()
             print(non_field_errors)
-            return render(request, 'addmeeting.html', {'form': form, 'name': request.user.username, 'non_field_errors': non_field_errors})
+            return render(request, 'scheduler/meeting_add_update.html', {'form': form, 'name': request.user.username, 'non_field_errors': non_field_errors, 'title': 'Add Meeting'})
     else:
         is_mentor = request.user.groups.filter(name="Mentor").exists()
         if is_mentor:
             form = AddMeetingForm()
-            return render(request, 'addmeeting.html', {'form': form, 'name': request.user.username})
+            return render(request, 'scheduler/meeting_add_update.html', {'form': form, 'name': request.user.username, 'title': 'Add Meeting'})
         else:
             open_meetings = Meeting.objects.filter(student=None)
-            if len(open_meetings) != 0:
-                open_meetings = list(map(lambda meeting:  [meeting.date.strftime("%-m/%d/%Y"),  meeting.time.strftime("%-I:%M %p"),  meeting.time.strftime("%-I:%M %p"), meeting.location , meeting.description, meeting.id, meeting.mentor], open_meetings))
-            return render(request, 'view_open_meetings.html', {'meetings': open_meetings, 'name': request.user.username})
+            open_meetings = list(map(lambda meeting: {"date":  meeting.date, 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"),  'location': meeting.location , 'description': meeting.description, 'id': meeting.id, 'mentor': {'mentor_name': meeting.mentor.username, 'mentor_email': meeting.mentor.email}}, open_meetings))
+            is_mentor = 'true' if is_mentor else 'false'
+            return render(request, 'frontend/calendar.html', {'meetings': json.dumps(open_meetings), 'name': request.user.username, 'is_mentor': is_mentor, 'dashboard': 'false'})
 
 def join_meeting(request, pk):
     meeting = Meeting.objects.get(id=pk)
@@ -102,17 +104,27 @@ def join_meeting(request, pk):
         meeting.save()
         return HttpResponseRedirect('/dashboard')
     else:
-        return render(request, 'join_meeting_confirm.html', {'meeting_date': meeting.date.strftime("%m/%d/%Y"), 'meeting_time': meeting.time.strftime("%H:%M"), 'meeting_location': meeting.location, 'meeting_id': pk})
+        return render(request, 'join_meeting_confirm.html', {'meeting_date': meeting.date, 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"), 'meeting_location': meeting.location, 'meeting_id': pk, 'name': request.user.username})
 
 class EditMeeting(UpdateView):
     model = Meeting
-    fields = ['date', 'time', 'location', 'description']
-    template_name_suffix = '_update_form'
+    fields = ['date', 'start_time', 'end_time', 'location', 'description']
+    title = 'Edit Meeting'
+    template_name_suffix = '_add_update'
     success_url = "/dashboard"
+    def get_context_data(self, **kwargs):
+        context = super(EditMeeting, self).get_context_data(**kwargs)
+        context['title'] = self.title
+        context['name'] = self.request.user.username
+        return context
 
 class DeleteMeeting(DeleteView):
     model = Meeting
     success_url = "/dashboard"
+    def get_context_data(self, **kwargs):
+        context = super(DeleteMeeting, self).get_context_data(**kwargs)
+        context['name'] = self.request.user.username
+        return context
 
 def logout_view(request):
     logout(request)

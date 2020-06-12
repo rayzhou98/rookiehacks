@@ -13,4 +13,5 @@ def dashboard(request):
         meetings = list(map(lambda meeting:  {"date":  meeting.date, 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"),  'location': meeting.location , 'description': meeting.description, 'id': meeting.id, 'student': {'student_name': meeting.student.username, 'student_email': meeting.student.email}, 'mentor': {'mentor_name': meeting.mentor.username, 'mentor_email': meeting.mentor.email}} if meeting.student else {"date":  meeting.date, 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"), 'location': meeting.location , 'description': meeting.description, 'id': meeting.id, 'student': None, 'mentor': {'mentor_name': meeting.mentor.username, 'mentor_email': meeting.mentor.email}}, meetings))
     else:
         meetings = []
-    return render(request, 'frontend/dashboard.html', {'name': request.user.username, 'meetings': json.dumps(meetings), 'is_mentor': is_mentor})
+    is_mentor = 'true' if is_mentor else 'false'
+    return render(request, 'frontend/calendar.html', {'name': request.user.username, 'meetings': json.dumps(meetings), 'is_mentor': is_mentor, 'dashboard': 'true'})

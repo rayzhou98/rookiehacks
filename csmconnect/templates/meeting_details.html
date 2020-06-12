@@ -31,10 +31,16 @@
     </div>
     {% endif %}
     <br></br>
-    <div class="edit-delete">
-      <a class="detail-button edit-button" href="/editmeeting/{{ id }}"> Edit </a>
-      <a class="detail-button delete-button" href="/deletemeeting/{{ id }}"> Delete </a>
-    </div>
+    {% if is_mentor %}
+      <div class="edit-delete">
+        <a class="detail-button edit-button" href="/editmeeting/{{ id }}"> Edit </a>
+        <a class="detail-button delete-button" href="/deletemeeting/{{ id }}"> Delete </a>
+      </div>
+    {% else %}
+      <div class="edit-delete">
+        <a class="detail-button leave-button" href="/leavemeeting/{{ id }}"> Leave </a>
+      </div>
+    {% endif %}
   </div>
 </body>
 </html>

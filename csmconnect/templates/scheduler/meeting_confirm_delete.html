@@ -1,5 +1,19 @@
-<form method="post">
-    {% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'scheduler/styles/deletemeetinglayout.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  {% include 'frontend/header.html' %}
+  <hr class="solid">
+  <form method="post">
+      {% csrf_token %}
+      <div class="delete-container">
+        <div class="confirm">Are you sure you want to delete the meeting at {{ object.date }} from {{ object.start_time }} to {{ object.end_time }}?</div>
+        <br></br>
+        <input class="submit" type="submit" value="Confirm">
+      </div>
+  </form>
+</body>

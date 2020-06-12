@@ -60,24 +60,41 @@ class CalendarEvent extends Component {
 
    render() {
     if (this.state.inRange) {
-       var url = "meetingdetails/" + this.props.id;
-       if (this.props.student) {
-         return (<a className="event" style={this.state.styles} href={url}>
-                 <div> {this.props.start_time}
-                 <br></br>
-                 Meeting with {this.props.student}
-                 </div>
-              </a>);
-       }
-       else {
-         return (<a className="event" style={this.state.styles} href={url}>
-             <div> {this.props.start_time}
-             <br></br>
-             No student assigned.
-             </div>
-             </a>
-           );
-       }
+      if (this.props.is_mentor === 'true') {
+        var url = "meetingdetails/" + this.props.id;
+        if (this.props.student) {
+          return (<a className="event" style={this.state.styles} href={url}>
+                  <div> {this.props.start_time}
+                  <br></br>
+                  Meeting with {this.props.student.student_name}
+                  </div>
+               </a>);
+        }
+        else {
+          return (<a className="event" style={this.state.styles} href={url}>
+              <div> {this.props.start_time}
+              <br></br>
+              No student assigned.
+              </div>
+              </a>
+            );
+        }
+      }
+      else {
+        var url;
+        if (this.props.dashboard === 'true') {
+          url = "meetingdetails/" + this.props.id;
+        }
+        else {
+          url = "joinmeeting/" + this.props.id;
+        }
+        return (<a className="event" style={this.state.styles} href={url}>
+                  <div> {this.props.start_time}
+                  <br></br>
+                  Meeting with {this.props.mentor.mentor_name}
+                  </div>
+               </a>);
+      }
      }
      else {
        return null;
@@ -116,6 +133,8 @@ class Calendar extends Component {
 
     this.state = {
       meetings: JSON.parse(document.currentScript.getAttribute('meetings')),
+      is_mentor: document.currentScript.getAttribute('is_mentor'),
+      dashboard: document.currentScript.getAttribute('dashboard'),
       days: days,
       times: times
     }
@@ -131,6 +150,8 @@ class Calendar extends Component {
             mentor={event.mentor}
             days={this.state.days}
             id={event.id}
+            is_mentor={this.state.is_mentor}
+            dashboard={this.state.dashboard}
           />;
   }
 

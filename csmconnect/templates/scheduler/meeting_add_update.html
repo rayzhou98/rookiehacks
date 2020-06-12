@@ -8,7 +8,7 @@
 <body>
   {% include 'frontend/header.html' %}
   <hr class="solid">
-  <p class="add-meeting"> Add Meeting </p>
+  <p class="add-meeting"> {{ title }} </p>
   <form action="addmeeting" method="post">
       {% csrf_token %}
       <div class="date-time">

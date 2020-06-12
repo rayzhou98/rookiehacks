@@ -1,7 +1,23 @@
-<form action="{{ meeting_id }}" method="post">
-  {% csrf_token %}
-  <h1> Are you sure you want to join the meeting on {{ meeting_date }}, {{ meeting_time }} at {{ meeting_location }}? </h1>
-  <input type="submit" value="Yes">
-  <br></br>
-  <input type="button" value="Go back" onclick="history.back()">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'scheduler/styles/joinmeetinglayout.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  {% include 'frontend/header.html' %}
+  <hr class="solid">
+  <form action="{{ meeting_id }}" method="post">
+    {% csrf_token %}
+    <div class="confirm-container">
+      <div class="confirm-message"> Are you sure you want to join the meeting on {{ meeting_date }}, {{ meeting_time }} at {{ meeting_location }}? </div>
+      <br></br>
+      <div class="button-container">
+        <input class="confirm-button submit" type="submit" value="Yes">
+        <br></br>
+        <input class="confirm-button back" type="button" value="Go back" onclick="history.back()">
+      </div>
+    </div>
+  </form>
+</body>
