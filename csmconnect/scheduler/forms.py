@@ -5,8 +5,15 @@ class SignUpForm(forms.Form):
     your_name = forms.CharField(label='Your name:', max_length=100)
     your_email = forms.EmailField(label='Your email:')
     password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32)
-    #Note: Can add confirm password field later.
+    confirm_password = forms.CharField(label='Confirm password:', widget=forms.PasswordInput, min_length=8, max_length=32)
     account_type = forms.ChoiceField(label='Choose account type:', choices=[('M', 'Mentor'), ('S', 'Student')])
+    def clean(self):
+        cd = self.cleaned_data
+        password = cd.get('password')
+        password_confirm = cd.get('confirm_password')
+        if password != password_confirm:
+            self.add_error('confirm_password', 'Passwords don\'t match.')
+        return cd
 
 class LoginForm(forms.Form):
     your_name = forms.CharField(label='Your name:', max_length=100)

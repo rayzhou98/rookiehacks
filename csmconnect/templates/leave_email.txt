@@ -1,0 +1,6 @@
+Hello {{ mentor_name }},
+
+{{ student_name }} has left your meeting on {{ meeting_date }} from {{ start_time }}-{{ end_time }}.
+Email your student at {{ student_email }} if you have any questions.
+
+-CSMConnect

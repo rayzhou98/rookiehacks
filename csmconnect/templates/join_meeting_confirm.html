@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 {% load static %}
-<link rel="stylesheet" href="{% static 'scheduler/styles/joinmeetinglayout.css' %}">
+<link rel="stylesheet" href="{% static 'scheduler/styles/confirmlayout.css' %}">
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -11,7 +11,8 @@
   <form action="{{ meeting_id }}" method="post">
     {% csrf_token %}
     <div class="confirm-container">
-      <div class="confirm-message"> Are you sure you want to join the meeting on {{ meeting_date }}, {{ meeting_time }} at {{ meeting_location }}? </div>
+      <br></br>
+      <div class="confirm-message"> Are you sure you want to join the meeting on {{ meeting_date }}, {{ start_time }}-{{ end_time }} at {{ meeting_location }}? </div>
       <br></br>
       <div class="button-container">
         <input class="confirm-button submit" type="submit" value="Yes">
@@ -21,3 +22,4 @@
     </div>
   </form>
 </body>
+</html>

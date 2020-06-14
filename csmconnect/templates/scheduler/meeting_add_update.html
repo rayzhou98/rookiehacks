@@ -9,35 +9,68 @@
   {% include 'frontend/header.html' %}
   <hr class="solid">
   <p class="add-meeting"> {{ title }} </p>
-  <form action="addmeeting" method="post">
-      {% csrf_token %}
-      <div class="date-time">
-        <div class="form-item">
-          <label for="{{ form.date.id_for_label }}"> Meeting date: {{ form.date }} </label>
-          {{ form.date.errors }}
+  {% if is_add %}
+    <form action="/addmeeting" method="post">
+        {% csrf_token %}
+        <div class="date-time">
+          <div class="form-item">
+            <label for="{{ form.date.id_for_label }}"> Meeting date: {{ form.date }} </label>
+            {{ form.date.errors }}
+          </div>
+          <div class="form-item">
+            <label for="{{ form.start_time.id_for_label }}"> Start time: {{ form.start_time }} </label>
+            {{ form.start_time.errors }}
+          </div>
+          <div class="form-item">
+            <label for="{{ form.end_time.id_for_label }}"> End time: {{ form.end_time }} </label>
+            {{ form.end_time.errors | striptags}}
+          </div>
+          {{ non_field_errors }}
         </div>
-        <div class="form-item">
-          <label for="{{ form.start_time.id_for_label }}"> Start time: {{ form.start_time }} </label>
-          {{ form.start_time.errors }}
-        </div>
-        <div class="form-item">
-          <label for="{{ form.end_time.id_for_label }}"> End time: {{ form.end_time }} </label>
-          {{ form.end_time.errors | striptags}}
-        </div>
-        {{ non_field_errors }}
-      </div>
-      <br></br>
-      <div class="location-description">
-        <label for="{{ form.location.id_for_label }}"> Location: </label>
-        {{ form.location }}
-        {{ form.location.errors | striptags }}
         <br></br>
-        <label for="{{ form.description.id_for_label }}"> Description: </label>
-        {{ form.description }}
-        {{ form.description.errors | striptags }}
-      </div>
-      <br></br>
-      <input class="submit" type="submit" value="Submit">
-  </form>
+        <div class="location-description">
+          <label for="{{ form.location.id_for_label }}"> Location: </label>
+          {{ form.location }}
+          {{ form.location.errors | striptags }}
+          <br></br>
+          <label for="{{ form.description.id_for_label }}"> Description: </label>
+          {{ form.description }}
+          {{ form.description.errors | striptags }}
+        </div>
+        <br></br>
+        <input class="submit" type="submit" value="Submit">
+    </form>
+  {% else %}
+    <form action="{{ meeting_id }}" method="post">
+        {% csrf_token %}
+        <div class="date-time">
+          <div class="form-item">
+            <label for="{{ form.date.id_for_label }}"> Meeting date: {{ form.date }} </label>
+            {{ form.date.errors }}
+          </div>
+          <div class="form-item">
+            <label for="{{ form.start_time.id_for_label }}"> Start time: {{ form.start_time }} </label>
+            {{ form.start_time.errors }}
+          </div>
+          <div class="form-item">
+            <label for="{{ form.end_time.id_for_label }}"> End time: {{ form.end_time }} </label>
+            {{ form.end_time.errors | striptags}}
+          </div>
+          {{ non_field_errors }}
+        </div>
+        <br></br>
+        <div class="location-description">
+          <label for="{{ form.location.id_for_label }}"> Location: </label>
+          {{ form.location }}
+          {{ form.location.errors | striptags }}
+          <br></br>
+          <label for="{{ form.description.id_for_label }}"> Description: </label>
+          {{ form.description }}
+          {{ form.description.errors | striptags }}
+        </div>
+        <br></br>
+        <input class="submit" type="submit" value="Submit">
+    </form>
+  {% endif %}
 </body>
 </html>

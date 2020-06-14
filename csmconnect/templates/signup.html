@@ -1,5 +1,6 @@
 <form action="signup" method="post">
     {% csrf_token %}
     {{ form }}
+    {{ form.errors }}
     <input type="submit" value="Submit">
 </form>

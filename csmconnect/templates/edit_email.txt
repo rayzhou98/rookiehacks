@@ -1,0 +1,12 @@
+Hello {{ student_name }},
+
+Your meeting with {{ mentor_name }} has been updated.
+The new details of the meeting are as follows:
+Date: {{ meeting_date }}
+Time: {{ start_time }}-{{ end_time }}
+Location: {{ location }}
+Description: {{ description }}
+
+Email your mentor at {{ mentor_email }} if you have any questions.
+
+-CSMConnect

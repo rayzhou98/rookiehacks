@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 # import psycopg2
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -126,6 +127,18 @@ USE_L10N = True
 USE_TZ = True
 
 TIME_INPUT_FORMATS = ['%I:%M %p']
+
+EMAIL_SUBJECT_PREFIX = '[CSMConnect] '
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+
+EMAIL_HOST_USER = 'apikey'
+
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 

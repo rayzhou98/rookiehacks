@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from scheduler.models import Meeting
 import json
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='login')
 def dashboard(request):
     is_mentor = request.user.groups.filter(name="Mentor").exists()
     if is_mentor:
