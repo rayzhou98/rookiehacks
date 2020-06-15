@@ -82,14 +82,12 @@ WSGI_APPLICATION = 'csmconnect.wsgi.application'
 #Note: add back postgresql database!
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'users',
-        # 'USER': 'admin',
-        # 'PASSWORD': 'test',
-        # 'HOST': '127.0.0.1',
-        # 'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'user',
+        'USER': 'admin',
+        'PASSWORD': 'test',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
