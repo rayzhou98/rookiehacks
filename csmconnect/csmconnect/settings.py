@@ -120,9 +120,11 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
+
+DATE_INPUT_FORMATS = ['%a, %b %d, %Y']
 
 TIME_INPUT_FORMATS = ['%I:%M %p']
 

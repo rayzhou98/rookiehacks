@@ -1,5 +1,6 @@
 .button {
   background-color: #7167B9;
+  font-family: 'Roboto', sans-serif;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -9,6 +10,12 @@
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 25px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
 }
 
 .calendar-header {
@@ -21,7 +28,7 @@
 
 .my-meetings {
    color:  #7167B9;
-   font-size: 24px;
+   font-size: 36px;
 }
 
 .grid-container {

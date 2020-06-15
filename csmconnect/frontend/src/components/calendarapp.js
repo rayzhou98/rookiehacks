@@ -6,44 +6,36 @@ class CalendarEvent extends Component {
    constructor(props) {
       super(props);
       var date = props.date;
+      var width = 200;
       var col = props.days.indexOf(date);
-      if (col != -1) { //Temporary: only show events for the current week.
-        var width = 200;
-        col = col + 2;
-        var parsedStartTime = this.parseTime(props.start_time);
-        var startHour = parsedStartTime[0];
-        var startMinute = parsedStartTime[1];
-        var startRow = startHour - 5;
+      col = col + 2;
+      var parsedStartTime = this.parseTime(props.start_time);
+      var startHour = parsedStartTime[0];
+      var startMinute = parsedStartTime[1];
+      var startRow = startHour - 5;
 
-        var parsedEndTime = this.parseTime(props.end_time);
-        var endHour = parsedEndTime[0];
-        var endMinute = parsedEndTime[1];
-        var span = endHour - startHour + 1;
+      var parsedEndTime = this.parseTime(props.end_time);
+      var endHour = parsedEndTime[0];
+      var endMinute = parsedEndTime[1];
+      var span = endHour - startHour + 1;
 
-        var position = "absolute";
-        var top = (startMinute/60) * 50;
-        var bottom = 50 - ((endMinute/60) * 50);
-        var zIndex = 0;
-        this.state = {
-            styles: {
-              gridColumn: col,
-              width: width,
-              gridRow: startRow.toString() +  "/ span " + span.toString(),
-              position: position,
-              top: top,
-              bottom: bottom,
-              zIndex: zIndex,
-              backgroundColor: "#7167B9",
-              textDecoration: "none",
-              color: "#E5E5E5"
-            },
-            inRange: true
-        }
-      }
-      else {
-        this.state = {
-          inRange: false
-        }
+      var position = "absolute";
+      var top = (startMinute/60) * 50;
+      var bottom = 50 - ((endMinute/60) * 50);
+      var zIndex = 0;
+      this.state = {
+          styles: {
+            gridColumn: col,
+            width: width,
+            gridRow: startRow.toString() +  "/ span " + span.toString(),
+            position: position,
+            top: top,
+            bottom: bottom,
+            zIndex: zIndex,
+            backgroundColor: "#7167B9",
+            textDecoration: "none",
+            color: "#E5E5E5"
+          }
       }
  }
 
@@ -59,7 +51,7 @@ class CalendarEvent extends Component {
    }
 
    render() {
-    if (this.state.inRange) {
+    if (this.props.inRange) {
       if (this.props.is_mentor === 'true') {
         var url = "meetingdetails/" + this.props.id;
         if (this.props.student) {
@@ -100,15 +92,38 @@ class CalendarEvent extends Component {
        return null;
      }
     }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.inRange !== prevProps.inRange) {
+      this.setState({
+          styles: {
+            gridColumn: this.props.days.indexOf(this.props.date) + 2,
+            width: this.state.styles.width,
+            gridRow: this.state.styles.gridRow,
+            position: this.state.styles.position,
+            top:  this.state.styles.top,
+            bottom:  this.state.styles.bottom,
+            zIndex:  this.state.styles.zIndex,
+            backgroundColor:  this.state.styles.backgroundColor,
+            textDecoration: this.state.styles.textDecoration,
+            color: this.state.styles.color
+          }
+      });
+    }
+  }
 }
 
 class Calendar extends Component {
   constructor(props) {
     super(props)
     var days = [];
-    var options = { weekday: 'short', month: 'short', day: 'numeric'};
+    var options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'};
+    var firstDay;
     for (var i = 0; i < 7; i++) {
       var day = new Date();
+      if (i == 0) {
+        firstDay = day;
+      }
       day.setDate(day.getDate() + i);
       days.push(new Intl.DateTimeFormat('en-US', options).format(day));
     }
@@ -136,7 +151,8 @@ class Calendar extends Component {
       is_mentor: document.currentScript.getAttribute('is_mentor'),
       dashboard: document.currentScript.getAttribute('dashboard'),
       days: days,
-      times: times
+      times: times,
+      firstDay: firstDay
     }
   }
 
@@ -152,6 +168,7 @@ class Calendar extends Component {
             id={event.id}
             is_mentor={this.state.is_mentor}
             dashboard={this.state.dashboard}
+            inRange={this.state.days.indexOf(event.date) !== -1}
           />;
   }
 
@@ -163,123 +180,159 @@ class Calendar extends Component {
     return events;
   }
 
+  changeDates(isNext) {
+    var days = [];
+    var options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'};
+    var firstDay;
+    if (isNext) {
+      for (var i = 1; i < 8; i++) {
+        var day = new Date();
+        day.setDate(this.state.firstDay.getDate() + 6 + i);
+        if (i == 1) {
+          firstDay = day;
+        }
+        days.push(new Intl.DateTimeFormat('en-US', options).format(day));
+      }
+    }
+    else {
+      for (var i = 7; i > 0; i--) {
+        var day = new Date();
+        day.setDate(this.state.firstDay.getDate() - i);
+        if (i == 7) {
+          firstDay = day;
+        }
+        days.push(new Intl.DateTimeFormat('en-US', options).format(day));
+      }
+    }
+    this.setState({
+      days: days,
+      firstDay: firstDay
+    });
+  }
+
    render() {
      return (
-        <div className="grid-container">
-          {this.loadEvents()}
-          <div className="day-of-week"> </div>
-          <div className="day-of-week"> {this.state.days[0]} </div>
-          <div className="day-of-week"> {this.state.days[1]} </div>
-          <div className="day-of-week"> {this.state.days[2]} </div>
-          <div className="day-of-week"> {this.state.days[3]}</div>
-          <div className="day-of-week"> {this.state.days[4]} </div>
-          <div className="day-of-week"> {this.state.days[5]} </div>
-          <div className="day-of-week"> {this.state.days[6]} </div>
-          <div className="time"> {this.state.times[0]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[1]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[2]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[3]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[4]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[5]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[6]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[7]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[8]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[9]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[10]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[11]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="time"> {this.state.times[12]} </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-          <div className="grid-element"> </div>
-        </div>
+       <div className="outer-container">
+         <div className="nav-container">
+            <div className="button" onClick={() => this.changeDates(false)}>Prev</div>
+            <div className="button" onClick={() => this.changeDates(true)}>Next</div>
+         </div>
+          <div className="grid-container">
+            {this.loadEvents()}
+            <div className="day-of-week"> </div>
+            <div className="day-of-week"> {this.state.days[0]} </div>
+            <div className="day-of-week"> {this.state.days[1]} </div>
+            <div className="day-of-week"> {this.state.days[2]} </div>
+            <div className="day-of-week"> {this.state.days[3]}</div>
+            <div className="day-of-week"> {this.state.days[4]} </div>
+            <div className="day-of-week"> {this.state.days[5]} </div>
+            <div className="day-of-week"> {this.state.days[6]} </div>
+            <div className="time"> {this.state.times[0]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[1]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[2]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[3]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[4]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[5]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[6]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[7]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[8]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[9]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[10]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[11]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="time"> {this.state.times[12]} </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+            <div className="grid-element"> </div>
+          </div>
+      </div>
      );
    }
 }

@@ -3,7 +3,17 @@
 <head>
 {% load static %}
 <link rel="stylesheet" href="{% static 'scheduler/styles/addmeetinglayout.css' %}">
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$(function () {
+    $("#id_date").datepicker({
+      dateFormat: 'D, M d, yy'
+    });
+  });
+</script>
 </head>
 <body>
   {% include 'frontend/header.html' %}

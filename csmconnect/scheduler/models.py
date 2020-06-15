@@ -5,11 +5,11 @@ import datetime
 
 # Create your models here.
 class Meeting(models.Model):
-    dates = []
-    for i in range(7):
-        date = datetime.datetime.now(tz=datetime.timezone(-datetime.timedelta(hours=8))) + datetime.timedelta(days=i)
-        dates.append((date.strftime('%a, %b %d').replace(' 0', ''), date.strftime('%a, %b %d').replace(' 0', '')))
-    date = models.fields.CharField(max_length=20, choices=dates)
+    # dates = []
+    # for i in range(7):
+    #     date = datetime.datetime.now(tz=datetime.timezone(-datetime.timedelta(hours=8))) + datetime.timedelta(days=i)
+    #     dates.append((date.strftime('%a, %b %d').replace(' 0', ''), date.strftime('%a, %b %d').replace(' 0', '')))
+    date = models.fields.DateField()
     start_time = models.fields.TimeField()
     end_time = models.fields.TimeField()
     location = models.fields.TextField()
