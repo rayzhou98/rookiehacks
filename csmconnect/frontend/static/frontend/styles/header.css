@@ -13,6 +13,11 @@
   font-weight: normal;
   font-size: 48px;
   color: #7167B9;
+  margin-left: -160px;
+}
+
+.dashboard-link {
+  margin-left: -200px;
 }
 
 .button {

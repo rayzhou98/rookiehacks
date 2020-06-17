@@ -17,4 +17,4 @@ def dashboard(request):
     else:
         meetings = []
     is_mentor = 'true' if is_mentor else 'false'
-    return render(request, 'frontend/calendar.html', {'name': request.user.username, 'meetings': json.dumps(meetings), 'is_mentor': is_mentor, 'dashboard': 'true'})
+    return render(request, 'frontend/calendar.html', {'name': request.user.username, 'meetings': json.dumps(meetings), 'is_mentor': is_mentor, 'dashboard': 'true', 'id': request.user.id})

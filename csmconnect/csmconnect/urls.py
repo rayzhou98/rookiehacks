@@ -32,5 +32,7 @@ urlpatterns = [
     path('logout', views.logout_view, name="logout"),
     path('logoutsuccess', views.logout_success, name="logoutsuccess"),
     path('joinmeeting/<int:pk>', views.join_meeting, name="joinmeeting"),
-    path('leavemeeting/<int:pk>', views.leave_meeting, name="leavemeeting")
+    path('leavemeeting/<int:pk>', views.leave_meeting, name="leavemeeting"),
+    path('profile/<int:pk>', views.profile, name="profile"),
+    path('editprofile/<int:pk>', views.EditUser.as_view(), name="edit_profile")
 ]

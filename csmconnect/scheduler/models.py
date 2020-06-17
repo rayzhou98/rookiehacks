@@ -4,11 +4,14 @@ from csmconnect import settings
 import datetime
 
 # Create your models here.
+class SiteUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.FileField(upload_to='uploads/')
+    short_description = models.fields.TextField(blank=True, null=True)
+    bio = models.fields.TextField(blank=True, null=True)
+    experience = models.fields.TextField(blank=True, null=True)
+
 class Meeting(models.Model):
-    # dates = []
-    # for i in range(7):
-    #     date = datetime.datetime.now(tz=datetime.timezone(-datetime.timedelta(hours=8))) + datetime.timedelta(days=i)
-    #     dates.append((date.strftime('%a, %b %d').replace(' 0', ''), date.strftime('%a, %b %d').replace(' 0', '')))
     date = models.fields.DateField()
     start_time = models.fields.TimeField()
     end_time = models.fields.TimeField()

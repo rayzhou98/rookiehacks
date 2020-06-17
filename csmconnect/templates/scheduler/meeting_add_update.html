@@ -18,7 +18,7 @@ $(function () {
 <body>
   {% include 'frontend/header.html' %}
   <hr class="solid">
-  <p class="add-meeting"> {{ title }} </p>
+  <div class="add-meeting"> {{ title }} </div>
   {% if is_add %}
     <form action="/addmeeting" method="post">
         {% csrf_token %}
@@ -33,7 +33,7 @@ $(function () {
           </div>
           <div class="form-item">
             <label for="{{ form.end_time.id_for_label }}"> End time: {{ form.end_time }} </label>
-            {{ form.end_time.errors | striptags}}
+            {{ form.end_time.errors }}
           </div>
           {{ non_field_errors }}
         </div>
@@ -41,11 +41,11 @@ $(function () {
         <div class="location-description">
           <label for="{{ form.location.id_for_label }}"> Location: </label>
           {{ form.location }}
-          {{ form.location.errors | striptags }}
+          {{ form.location.errors }}
           <br></br>
           <label for="{{ form.description.id_for_label }}"> Description: </label>
           {{ form.description }}
-          {{ form.description.errors | striptags }}
+          {{ form.description.errors }}
         </div>
         <br></br>
         <input class="submit" type="submit" value="Submit">
@@ -64,7 +64,7 @@ $(function () {
           </div>
           <div class="form-item">
             <label for="{{ form.end_time.id_for_label }}"> End time: {{ form.end_time }} </label>
-            {{ form.end_time.errors | striptags}}
+            {{ form.end_time.errors }}
           </div>
           {{ non_field_errors }}
         </div>
@@ -72,11 +72,11 @@ $(function () {
         <div class="location-description">
           <label for="{{ form.location.id_for_label }}"> Location: </label>
           {{ form.location }}
-          {{ form.location.errors | striptags }}
+          {{ form.location.errors }}
           <br></br>
           <label for="{{ form.description.id_for_label }}"> Description: </label>
           {{ form.description }}
-          {{ form.description.errors | striptags }}
+          {{ form.description.errors }}
         </div>
         <br></br>
         <input class="submit" type="submit" value="Submit">

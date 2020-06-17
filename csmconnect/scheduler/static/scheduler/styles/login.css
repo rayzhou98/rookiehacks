@@ -3,7 +3,56 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+.box.flex {
+  display: flex;
+  justify-content: center;
+  background-color: #87CEFA;
+}
+
+.box {
+  padding: .5rem;
+  height: 500px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.03);
+  border-radius: 4px;
+
+  color: #84613D;
+  font-family: "Roboto", sans-serif;
+  background: #FDF9EA;
+  border-bottom: 1px solid #F9F2D6;
+  border-right: 1px solid #F9F2D6;
+
+}
+
+.box section {
+  width: 400px;
+  text-align: center;
+  background:#4B0082;
+  color: white;
+  margin: 10px;
+  padding: 5px;
+  border-style: solid;
+  border-color: black;
+  border-width: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submit-button {
+  background-color: #87CEFA; /* Blue */
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  border-style: solid;
+  border-color: black;
+  border-width: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  height: 60px;
 }
 
 /* Style the header */
@@ -11,9 +60,8 @@ header {
   background-color: #9370DB;
   padding: 10px;
   text-align: left;
-  font-size: 35px;
   color: white;
-  align-content: flex-start;
+  font-family: "Roboto", sans-serif;
 }
 
 .title-container {
@@ -28,9 +76,15 @@ header {
   margin-left: 400px;
 }
 
+.login-title {
+  margin-top: 70px;
+  font-size: 24px;
+}
+
 .container {
   display: flex;
   color: white;
+  font-size: 35px;
 }
 
 /* Container for flexboxes */
@@ -42,7 +96,6 @@ section {
 
 aside {
   justify-content: flex-end;
-  /* margin: 0 1.5%; */
   padding: 20px;
   width: 30%;
   background-color: #4B0082;
@@ -66,6 +119,7 @@ nav ul {
   justify-content: space-between;
   color: white;
   background-color: black;
+  font-family: "Roboto";
 
 }
 

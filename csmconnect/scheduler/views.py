@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.edit import UpdateView, DeleteView
 from .forms import SignUpForm, LoginForm, AddMeetingForm
-from .models import Meeting
+from .models import Meeting, SiteUser
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group, User, Permission
 from django.db import models
@@ -27,34 +27,49 @@ def sign_up(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            is_mentor = form.cleaned_data['account_type'] == "M"
-            content_type = ContentType.objects.get_for_model(Meeting)
-            if is_mentor:
-                add_permission = Permission.objects.get(codename='add_meeting', content_type=content_type)
-                edit_permission = Permission.objects.get(codename='change_meeting', content_type=content_type)
-                delete_permission = Permission.objects.get(codename='delete_meeting', content_type=content_type)
-                view_permission = Permission.objects.get(codename='view_meeting', content_type=content_type)
-                group = Group(name='Mentor')
+            if User.objects.filter(username=form.cleaned_data['your_name']).exists():
+                username_error = "Username is already taken."
+                return render(request, 'signup.html', {'form': form, 'errors': username_error})
             else:
-                view_permission = Permission.objects.get(codename='view_meeting', content_type=content_type)
-                join_permission = Permission.objects.get(codename='join_meeting', content_type=content_type)
-                leave_permission = Permission.objects.get(codename='leave_meeting', content_type=content_type)
-                group = Group(name='Student')
-            user = User.objects.create_user(username=form.cleaned_data['your_name'], email=form.cleaned_data['your_email'],  password=form.cleaned_data['password'])
-            group.save()
-            user.groups.add(group)
-            if is_mentor:
-                group.permissions.set([add_permission, edit_permission, delete_permission, view_permission])
-            else:
-                group.permissions.set([view_permission, join_permission, leave_permission])
+                is_mentor = form.cleaned_data['account_type'] == "M"
+                content_type = ContentType.objects.get_for_model(Meeting)
+                if is_mentor:
+                    add_permission = Permission.objects.get(codename='add_meeting', content_type=content_type)
+                    edit_permission = Permission.objects.get(codename='change_meeting', content_type=content_type)
+                    delete_permission = Permission.objects.get(codename='delete_meeting', content_type=content_type)
+                    view_permission = Permission.objects.get(codename='view_meeting', content_type=content_type)
+                    group = Group.objects.filter(name='Mentor').exists()
+                    if not group:
+                        group = Group(name='Mentor')
+                        group.save()
+                    else:
+                        group = Group.objects.get(name='Mentor')
+                else:
+                    view_permission = Permission.objects.get(codename='view_meeting', content_type=content_type)
+                    join_permission = Permission.objects.get(codename='join_meeting', content_type=content_type)
+                    leave_permission = Permission.objects.get(codename='leave_meeting', content_type=content_type)
+                    group = Group.objects.filter(name='Student').exists()
+                    if not group:
+                        group = Group(name='Student')
+                        group.save()
+                    else:
+                        group = Group.objects.get(name='Student')
+                user = User.objects.create_user(username=form.cleaned_data['your_name'], email=form.cleaned_data['your_email'],  password=form.cleaned_data['password'])
+                user.groups.add(group)
+                group.save()
+                site_user = SiteUser(user=user)
+                site_user.save()
+                if is_mentor:
+                    group.permissions.set([add_permission, edit_permission, delete_permission, view_permission])
+                else:
+                    group.permissions.set([view_permission, join_permission, leave_permission])
 
-            return HttpResponseRedirect('signupsuccess')
+                return HttpResponseRedirect('signupsuccess')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = SignUpForm()
-
-    return render(request, 'signup.html', {'form': form})
+        return render(request, 'signup.html', {'form': form})
 
 def login_view(request):
     # if this is a POST request we need to process the form data
@@ -104,7 +119,7 @@ def add_meeting(request):
             return render(request, 'scheduler/meeting_add_update.html', {'form': form, 'name': request.user.username, 'title': 'Add Meeting'})
         else:
             open_meetings = Meeting.objects.filter(student=None)
-            open_meetings = list(map(lambda meeting: {"date":  meeting.date, 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"),  'location': meeting.location , 'description': meeting.description, 'id': meeting.id, 'mentor': {'mentor_name': meeting.mentor.username, 'mentor_email': meeting.mentor.email}}, open_meetings))
+            open_meetings = list(map(lambda meeting: {"date":  meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"),  'location': meeting.location , 'description': meeting.description, 'id': meeting.id, 'mentor': {'mentor_name': meeting.mentor.username, 'mentor_email': meeting.mentor.email}}, open_meetings))
             is_mentor = 'true' if is_mentor else 'false'
             return render(request, 'frontend/calendar.html', {'meetings': json.dumps(open_meetings), 'name': request.user.username, 'is_mentor': is_mentor, 'dashboard': 'false', 'is_add': True})
 
@@ -120,14 +135,14 @@ def join_meeting(request, pk):
         to = meeting.mentor.email
         text = get_template('join_email.txt')
         html = get_template('join_email.html')
-        context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': meeting.date, 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
+        context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
         text_content = text.render(context)
         html_content = html.render(context)
         send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
         meeting.save()
         return HttpResponseRedirect('/dashboard')
     else:
-        return render(request, 'join_meeting_confirm.html', {'meeting_date': meeting.date, 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"), 'meeting_location': meeting.location, 'meeting_id': pk, 'name': request.user.username})
+        return render(request, 'join_meeting_confirm.html', {'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"), 'meeting_location': meeting.location, 'meeting_id': pk, 'name': request.user.username})
 
 class EditMeeting(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Meeting
@@ -184,7 +199,7 @@ class DeleteMeeting(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             to = meeting.student.email
             text = get_template('delete_email.txt')
             html = get_template('delete_email.html')
-            context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': meeting.date, 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'mentor_email': meeting.mentor.email}
+            context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'mentor_email': meeting.mentor.email}
             text_content = text.render(context)
             html_content = html.render(context)
             send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
@@ -207,7 +222,7 @@ def leave_meeting(request, pk):
         to = meeting.mentor.email
         text = get_template('leave_email.txt')
         html = get_template('leave_email.html')
-        context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': meeting.date, 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
+        context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
         text_content = text.render(context)
         html_content = html.render(context)
         send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
@@ -215,13 +230,51 @@ def leave_meeting(request, pk):
         meeting.save()
         return HttpResponseRedirect('/dashboard')
     else:
-        return render(request, 'leave_meeting_confirm.html', {'meeting_date': meeting.date, 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time':  meeting.end_time.strftime("%-I:%M %p"), 'meeting_location': meeting.location, 'meeting_id': pk, 'name': request.user.username})
+        return render(request, 'leave_meeting_confirm.html', {'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time':  meeting.end_time.strftime("%-I:%M %p"), 'meeting_location': meeting.location, 'meeting_id': pk, 'name': request.user.username})
+
+@login_required(login_url='login')
+def profile(request, pk):
+    user = User.objects.get(id=pk)
+    if user.siteuser.image:
+        image_url = user.siteuser.image.url
+    else:
+        image_url = 'scheduler/images/default-profile.png'
+    if user.siteuser.short_description:
+        short_description = user.siteuser.short_description
+    else:
+        short_description = ''
+    if user.siteuser.bio:
+        bio = user.siteuser.bio
+    else:
+        bio = ''
+    if user.siteuser.experience:
+        experience = user.siteuser.experience
+    else:
+        experience = ''
+    print(user.siteuser.id)
+    return render(request, 'profile.html', {'name': user.username, 'email': user.username, 'image_url': image_url, 'short_description': short_description, 'bio': bio, 'experience': experience, 'id': user.siteuser.id })
+
+class EditUser(LoginRequiredMixin, UpdateView):
+    model = SiteUser
+    fields = ['user', 'image', 'short_description', 'bio', 'experience']
+    title = 'Edit User'
+    template_name_suffix = '_update'
+    login_url = 'login'
+    success_url = "/dashboard"
+
+    def get_context_data(self, **kwargs):
+        context = super(EditUser, self).get_context_data(**kwargs)
+        context['title'] = self.title
+        context['name'] = self.request.user.username
+        context['user_id'] = self.kwargs['pk']
+        return context
+
 
 @login_required(login_url='login')
 def meeting_details(request, pk):
     meeting = Meeting.objects.get(id=pk)
     is_mentor = request.user.groups.filter(name="Mentor").exists()
     if is_mentor:
-        return render(request, 'meeting_details.html', {'name': request.user.username, 'meeting_date': meeting.date, 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'meeting_location': meeting.location, 'description': meeting.description, 'student': meeting.student, 'is_mentor': is_mentor, 'id': pk})
+        return render(request, 'meeting_details.html', {'name': request.user.username, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'meeting_location': meeting.location, 'description': meeting.description, 'student': meeting.student, 'is_mentor': is_mentor, 'id': pk})
     else:
-        return render(request, 'meeting_details.html', {'name': request.user.username, 'meeting_date': meeting.date, 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'meeting_location': meeting.location, 'description': meeting.description, 'mentor': meeting.mentor, 'is_mentor': is_mentor, 'id': pk})
+        return render(request, 'meeting_details.html', {'name': request.user.username, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'meeting_location': meeting.location, 'description': meeting.description, 'mentor': meeting.mentor, 'is_mentor': is_mentor, 'id': pk})

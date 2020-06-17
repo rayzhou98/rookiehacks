@@ -1,5 +1,63 @@
-<form action="login" method="post">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<title>CSM Connect</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'scheduler/styles/login.css' %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+</head>
+<body>
+<header>
+
+  <div class="title-container">
+    <img src="{% static 'scheduler/images/logo.png' %}"></img>
+    <div class="title"> CSM Connect </div>
+  </div>
+
+  <nav id="s1">
+    <ul class="container">
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Sign Up</a></li>
+      <li><a href="#">Log In</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="box flex">
+  <section id="s1">
+  <form action="login" method="post">
+    {% csrf_token %}
+    <div class="login-title">Log In</div>
+    <br></br>
+    <div class="form-item">
+      <label for="{{ form.your_name.id_for_label }}"> Username: {{ form.your_name }} </label>
+      {{ form.your_name.errors }}
+    </div>
+    <br></br>
+    <div class="form-item">
+      <label for="{{ form.password.id_for_label }}"> Password: {{ form.password }} </label>
+      {{ form.password.errors }}
+    </div>
+    <br></br>
+    <input class="submit-button" type="submit" value="Login">
+  </form>
+  </section>
+</div>
+
+<footer>
+  <p>Created in 2020</p>
+</footer>
+
+</body>
+</html>
+
+
+
+<!-- <form action="login" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
-</form>
+</form> -->

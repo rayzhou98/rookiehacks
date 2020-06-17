@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'scheduler/styles/profile.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  {% include 'frontend/header.html' %}
+  <hr class="solid">
+  <div class="profile-outer-container">
+    <div class="profile-item sidebar">
+      <div class="profile-sidebar">
+        <div class="profile-sidebar-title">
+          Profile
+        </div>
+        <br></br>
+        <img class="profile-picture" src="{% static image_url  %}"></img>
+        <br></br>
+        <div class="profile-description">
+          <div class="name">
+            {{ name }}
+          </div>
+          <br></br>
+          <div class="short-description">
+            {{ short_description }}
+          </div>
+          <br></br>
+        </div>
+       </div>
+      <a class="button edit" href="/editprofile/{{ id }}">Edit</a>
+    </div>
+    <div class="profile-item bio-experience">
+      <div class="item bio">
+        <div class="profile-title bio">Biography</div>
+        <div class="profile-section bio"> {{ bio }}</div>
+      </div>
+      <div class="item experience">
+        <div class="profile-title experience">Experience</div>
+        <div class="profile-section experience"> {{ experience }}</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

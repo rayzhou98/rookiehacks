@@ -20,11 +20,6 @@ class LoginForm(forms.Form):
     password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32)
 
 class AddMeetingForm(forms.Form):
-    # dates = []
-    # for i in range(7):
-    #     date = datetime.datetime.now(tz=datetime.timezone(-datetime.timedelta(hours=8))) + datetime.timedelta(days=i)
-    #     dates.append((date.strftime('%a, %b %d').replace(' 0', ''), date.strftime('%a, %b %d').replace(' 0', '')))
-    # date = forms.ChoiceField(label="Meeting date:", choices=dates)
     date = forms.DateField(label="Meeting date:")
     start_time = forms.TimeField(label="Meeting start time:", error_messages={'invalid': 'Start time must be of the format HH:MM AM or HH:MM PM.'})
     end_time = forms.TimeField(label="Meeting end time:", error_messages={'invalid': 'End time must be of the format HH:MM AM or HH:MM PM.'})

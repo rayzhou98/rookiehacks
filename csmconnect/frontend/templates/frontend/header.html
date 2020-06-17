@@ -7,7 +7,8 @@
 </head>
 <body>
   <div class="header-container">
-    <a href="/dashboard">
+    <a class="button" href="/profile/{{ id }}"> Profile </a>
+    <a class="dashboard-link" href="/dashboard">
       <img class="logo" src="{% static 'scheduler/images/logo.png' %}"></img>
     </a>
     <h1 class="title"> Welcome, {{ name }}! </h1>
