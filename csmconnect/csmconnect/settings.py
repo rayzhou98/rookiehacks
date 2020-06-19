@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
-# import psycopg2
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scheduler',
-    'frontend'
+    'frontend',
+    'extra_views'
 ]
 
 MIDDLEWARE = [
@@ -139,6 +139,9 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'scheduler/media'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 

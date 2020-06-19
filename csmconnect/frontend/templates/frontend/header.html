@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% load static %}
-<link rel="stylesheet" href="{% static 'frontend/styles/header.css' %}">
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  {% load static %}
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{% static 'frontend/styles/header.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
   <div class="header-container">
-    <a class="button" href="/profile/{{ id }}"> Profile </a>
-    <a class="dashboard-link" href="/dashboard">
-      <img class="logo" src="{% static 'scheduler/images/logo.png' %}"></img>
-    </a>
+    <img class="logo" src="{% static 'scheduler/images/logo.png' %}"></img>
     <h1 class="title"> Welcome, {{ name }}! </h1>
-    <a class="button" href="/logout"> Log Out </a>
+    <div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+        <img class="dropdown-image" src="{{image_url}}"></img>
+      </button>
+      <ul class="dropdown-menu pull-right">
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/profile/{{user_id}}">Profile</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>

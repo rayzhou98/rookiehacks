@@ -18,7 +18,7 @@
     {% if is_mentor %}
       {% if student %}
         <div class="student-mentor-info">
-          <div class="meeting-item"> Student: {{ student.username }} </div>
+          <div class="meeting-item"> Student: <a class="meeting-item" href="/publicprofile/{{ student.id }}"> {{ student.username }} </a> </div>
           <a class="detail-button email-button" href="mailto:{{student.email}}"> EMAIL </a>
         </div>
       {% else %}
@@ -26,7 +26,7 @@
       {% endif %}
     {% else %}
     <div class="student-mentor-info">
-      <div class="meeting-item"> Mentor: {{ mentor.username }} </div>
+      <div class="meeting-item"> Mentor: <a class="meeting-item" href="/publicprofile/{{ mentor.id }}"> {{ mentor.username }} </a> </div>
       <a class="detail-button email-button" href="mailto:{{mentor.email}}"> EMAIL </a>
     </div>
     {% endif %}

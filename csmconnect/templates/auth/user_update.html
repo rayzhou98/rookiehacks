@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'scheduler/styles/siteuserupdatelayout.css' %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+</head>
+<body>
+  {% include 'frontend/header.html' %}
+  <hr class="solid">
+  <div class="update-user"> {{ title }} </div>
+  <br></br>
+  <form action="/editprofile/{{ user_id }}" enctype="multipart/form-data" method="post">
+      {% csrf_token %}
+      <div class="edit-container">
+          <div class="form-item">
+            <label for="{{ form.username.id_for_label }}"> Username: {{ form.username }} </label>
+            {{ form.username.errors }}
+          </div>
+          <div class="form-item">
+            <label for="{{ form.email.id_for_label }}"> Email: {{ form.email }} </label>
+            {{ form.email.errors }}
+          </div>
+        {% for formset in inlines %}
+            {{ formset }}
+            {{ formset.management_form }}
+        {% endfor %}
+        <input class="submit" type="submit" value="Submit">
+      </div>
+  </form>
+</body>
+</html>

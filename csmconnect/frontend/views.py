@@ -17,4 +17,8 @@ def dashboard(request):
     else:
         meetings = []
     is_mentor = 'true' if is_mentor else 'false'
-    return render(request, 'frontend/calendar.html', {'name': request.user.username, 'meetings': json.dumps(meetings), 'is_mentor': is_mentor, 'dashboard': 'true', 'id': request.user.id})
+    if request.user.siteuser.image:
+        image_url = request.user.siteuser.image.url
+    else:
+        image_url = '/static/scheduler/images/default-profile.png'
+    return render(request, 'frontend/calendar.html', {'name': request.user.username, 'meetings': json.dumps(meetings), 'is_mentor': is_mentor, 'dashboard': 'true', 'user_id': request.user.id, 'image_url': image_url})

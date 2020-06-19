@@ -35,12 +35,11 @@
   border-radius: 50%;
   height: 200px;
   width: 200px;
-
 }
 
 .button.edit {
-  height: 20px;
-  width: 60px;
+  height: 50px;
+  width: 200px;
 }
 
 .profile-description {
@@ -66,4 +65,9 @@
   text-align: center;
   color: white;
   margin-top: 20px;
+}
+
+.profile-section {
+  margin-left: 10px;
+  margin-top: 10px;
 }

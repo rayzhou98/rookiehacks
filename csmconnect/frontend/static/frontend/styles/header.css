@@ -13,22 +13,34 @@
   font-weight: normal;
   font-size: 48px;
   color: #7167B9;
-  margin-left: -160px;
-}
-
-.dashboard-link {
-  margin-left: -200px;
 }
 
 .button {
   background-color: #7167B9;
   border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+  color: white !important;
+  padding: 15px 32px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  font-size: 16px !important;
+  margin: 4px 2px !important;
+  cursor: pointer !important;
   border-radius: 25px;
+}
+
+.dropdown-image {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+}
+
+.btn {
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.dropdown-menu>li>a {
+  color: #7167B9 !important;
 }

@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from scheduler.views import HomeView
 from scheduler import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,5 +36,7 @@ urlpatterns = [
     path('joinmeeting/<int:pk>', views.join_meeting, name="joinmeeting"),
     path('leavemeeting/<int:pk>', views.leave_meeting, name="leavemeeting"),
     path('profile/<int:pk>', views.profile, name="profile"),
-    path('editprofile/<int:pk>', views.EditUser.as_view(), name="edit_profile")
-]
+    path('editprofile/<int:pk>', views.EditUser.as_view(), name="editprofile"),
+    path('publicprofile/<int:pk>', views.public_profile, name="publicprofile"),
+    path('changepassword/<int:pk>', views.change_password, name='changepassword')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
