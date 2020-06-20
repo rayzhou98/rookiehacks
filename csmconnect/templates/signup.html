@@ -1,7 +1,88 @@
-<form action="signup" method="post">
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<title>CSM Connect</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'scheduler/styles/login.css' %}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+</head>
+<body>
+<header>
+
+  <div class="title-container">
+    <img src="{% static 'scheduler/images/logo.png' %}"></img>
+    <div class="title"> CSM Connect </div>
+  </div>
+
+  <nav id="s1">
+    <ul class="container">
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="/signup">Sign Up</a></li>
+      <li><a href="/login">Log In</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="box flex">
+  <section id="s1">
+    <form action="signup" method="post">
+        <!-- {% csrf_token %}
+        {{ form }}
+        {{ form.errors }}
+        {{ errors }}
+        <input type="submit" value="Submit">
+    </form> -->
+  <form action="signup" method="post">
     {% csrf_token %}
-    {{ form }}
-    {{ form.errors }}
-    {{ errors }}
-    <input type="submit" value="Submit">
-</form>
+    <div class="login-title">Sign Up</div>
+    <br></br>
+    <div class="form-item">
+      <label for="{{ form.your_name.id_for_label }}"> Username: {{ form.your_name }} </label>
+      {{ form.your_name.errors }}
+    </div>
+    <br></br>
+    <div class="form-item">
+      <label for="{{ form.password.id_for_label }}"> Email: {{ form.your_email }} </label>
+      {{ form.your_email.errors }}
+      <br></br>
+      {{ error }}
+    </div>
+    <br></br>
+    <div class="form-item">
+      <label for="{{ form.password.id_for_label }}"> Password: {{ form.password }} </label>
+      {{ form.password.errors }}
+      <br></br>
+      {{ error }}
+    </div>
+    <br></br>
+    <div class="form-item">
+      <label for="{{ form.password.id_for_label }}"> Confirm Password: {{ form.confirm_password }} </label>
+      {{ form.confirm_password.errors }}
+      <br></br>
+      {{ error }}
+    </div>
+    <br></br>
+    <div class="form-item">
+      <label for="{{ form.password.id_for_label }}"> Account Type: {{ form.account_type }} </label>
+      {{ form.account_type.errors }}
+      <br></br>
+      {{ error }}
+    </div>
+    <br></br>
+    <input class="submit-button" type="submit" value="Sign Up">
+  </form>
+  </section>
+</div>
+
+<footer>
+  <p>Created in 2020</p>
+</footer>
+
+</body>
+</html>
