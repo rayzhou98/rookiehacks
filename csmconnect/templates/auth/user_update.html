@@ -18,6 +18,14 @@
             {{ form.username.errors }}
           </div>
           <div class="form-item">
+            <label for="{{ form.first_name.id_for_label }}"> First name: {{ form.first_name }} </label>
+            {{ form.first_name.errors }}
+          </div>
+          <div class="form-item">
+            <label for="{{ form.last_name.id_for_label }}"> Last name: {{ form.last_name }} </label>
+            {{ form.last_name.errors }}
+          </div>
+          <div class="form-item">
             <label for="{{ form.email.id_for_label }}"> Email: {{ form.email }} </label>
             {{ form.email.errors }}
           </div>

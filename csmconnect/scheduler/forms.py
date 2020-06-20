@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 
 class SignUpForm(forms.Form):
     your_name = forms.CharField(label='Your name:', max_length=100)
+    first_name = forms.CharField(label='First name:', max_length=100)
+    last_name = forms.CharField(label='Last name:', max_length=100)
     your_email = forms.EmailField(label='Your email:')
     password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32)
     confirm_password = forms.CharField(label='Confirm password:', widget=forms.PasswordInput, min_length=8, max_length=32)
@@ -14,6 +16,8 @@ class SignUpForm(forms.Form):
         password_confirm = cd.get('confirm_password')
         if password != password_confirm:
             self.add_error('confirm_password', 'Passwords don\'t match.')
+        if User.objects.filter(username=cd.get('your_name')).exists():
+            self.add_error('your_name', "Username is already taken.")
         return cd
 
 class LoginForm(forms.Form):

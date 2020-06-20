@@ -126,6 +126,8 @@ USE_TZ = True
 
 DATE_INPUT_FORMATS = ['%a, %b %d, %Y']
 
+DEFAULT_FROM_EMAIL = 'katiegu@berkeley.edu'
+
 TIME_INPUT_FORMATS = ['%I:%M %p']
 
 EMAIL_SUBJECT_PREFIX = '[CSMConnect] '

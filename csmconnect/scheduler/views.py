@@ -29,32 +29,30 @@ def sign_up(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            if User.objects.filter(username=form.cleaned_data['your_name']).exists():
-                username_error = "Username is already taken."
-                return render(request, 'signup.html', {'form': form, 'errors': username_error})
-            else:
-                is_mentor = form.cleaned_data['account_type'] == "M"
-                content_type = ContentType.objects.get_for_model(Meeting)
-                if is_mentor:
-                    group = Group.objects.filter(name='Mentor').exists()
-                    if not group:
-                        group = Group(name='Mentor')
-                        group.save()
-                    else:
-                        group = Group.objects.get(name='Mentor')
+            is_mentor = form.cleaned_data['account_type'] == "M"
+            content_type = ContentType.objects.get_for_model(Meeting)
+            if is_mentor:
+                group = Group.objects.filter(name='Mentor').exists()
+                if not group:
+                    group = Group(name='Mentor')
+                    group.save()
                 else:
-                    group = Group.objects.filter(name='Student').exists()
-                    if not group:
-                        group = Group(name='Student')
-                        group.save()
-                    else:
-                        group = Group.objects.get(name='Student')
-                user = User.objects.create_user(username=form.cleaned_data['your_name'], email=form.cleaned_data['your_email'],  password=form.cleaned_data['password'])
-                user.groups.add(group)
-                group.save()
-                site_user = SiteUser(user=user)
-                site_user.save()
-                return HttpResponseRedirect('signupsuccess')
+                    group = Group.objects.get(name='Mentor')
+            else:
+                group = Group.objects.filter(name='Student').exists()
+                if not group:
+                    group = Group(name='Student')
+                    group.save()
+                else:
+                    group = Group.objects.get(name='Student')
+            user = User.objects.create_user(username=form.cleaned_data['your_name'], first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'], email=form.cleaned_data['your_email'],  password=form.cleaned_data['password'])
+            user.groups.add(group)
+            group.save()
+            site_user = SiteUser(user=user)
+            site_user.save()
+            return HttpResponseRedirect('signupsuccess')
+        else:
+            return render(request, 'signup.html', {'form': form})
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -140,7 +138,9 @@ def join_meeting(request, pk):
         to = meeting.mentor.email
         text = get_template('join_email.txt')
         html = get_template('join_email.html')
-        context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
+        student_name = meeting.student.first_name +  " " + meeting.student.last_name
+        mentor_name = meeting.mentor.first_name + " " + meeting.mentor.last_name
+        context = { 'student_name': student_name, 'mentor_name': mentor_name, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
         text_content = text.render(context)
         html_content = html.render(context)
         send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
@@ -186,7 +186,9 @@ class EditMeeting(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             to = meeting.student.email
             text = get_template('edit_email.txt')
             html = get_template('edit_email.html')
-            context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': form.cleaned_data.get('date'), 'start_time': form.cleaned_data.get('start_time'), 'end_time': form.cleaned_data.get('end_time'), 'location': form.cleaned_data.get('location'), 'description': form.cleaned_data.get('description'), 'mentor_email': meeting.mentor.email}
+            student_name = meeting.student.first_name +  " " + meeting.student.last_name
+            mentor_name = meeting.mentor.first_name + " " + meeting.mentor.last_name
+            context = { 'student_name': student_name, 'mentor_name': mentor_name, 'meeting_date': form.cleaned_data.get('date'), 'start_time': form.cleaned_data.get('start_time'), 'end_time': form.cleaned_data.get('end_time'), 'location': form.cleaned_data.get('location'), 'description': form.cleaned_data.get('description'), 'mentor_email': meeting.mentor.email}
             text_content = text.render(context)
             html_content = html.render(context)
             send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
@@ -218,7 +220,9 @@ class DeleteMeeting(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             to = meeting.student.email
             text = get_template('delete_email.txt')
             html = get_template('delete_email.html')
-            context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'mentor_email': meeting.mentor.email}
+            student_name = meeting.student.first_name +  " " + meeting.student.last_name
+            mentor_name = meeting.mentor.first_name + " " + meeting.mentor.last_name
+            context = { 'student_name': student_name, 'mentor_name': mentor_name,  'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'mentor_email': meeting.mentor.email}
             text_content = text.render(context)
             html_content = html.render(context)
             send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
@@ -241,7 +245,9 @@ def leave_meeting(request, pk):
         to = meeting.mentor.email
         text = get_template('leave_email.txt')
         html = get_template('leave_email.html')
-        context = { 'student_name': meeting.student.username, 'mentor_name': meeting.mentor.username, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
+        student_name = meeting.student.first_name +  " " + meeting.student.last_name
+        mentor_name = meeting.mentor.first_name + " " + meeting.mentor.last_name
+        context = { 'student_name': student_name, 'mentor_name': mentor_name, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
         text_content = text.render(context)
         html_content = html.render(context)
         send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
@@ -274,7 +280,8 @@ def public_profile(request, pk):
         experience = user.siteuser.experience
     else:
         experience = ''
-    return render(request, 'public_profile.html', {'name': request.user.username, 'username': user.username, 'email': user.username, 'image_url': image_url, 'short_description': short_description, 'bio': bio, 'experience': experience, 'user_id': request.user.id})
+    first_and_last = user.first_name + " " + user.last_name
+    return render(request, 'public_profile.html', {'name': request.user.username, 'first_and_last': first_and_last, 'image_url': image_url, 'short_description': short_description, 'bio': bio, 'experience': experience, 'user_id': request.user.id})
 
 @login_required(login_url='login')
 def profile(request, pk):
@@ -295,7 +302,8 @@ def profile(request, pk):
         experience = user.siteuser.experience
     else:
         experience = ''
-    return render(request, 'profile.html', {'name': request.user.username, 'username': user.username, 'email': user.username, 'image_url': image_url, 'short_description': short_description, 'bio': bio, 'experience': experience, 'user_id': request.user.id})
+    first_and_last = user.first_name + " " + user.last_name
+    return render(request, 'profile.html', {'name': request.user.username, 'first_and_last': first_and_last, 'image_url': image_url, 'short_description': short_description, 'bio': bio, 'experience': experience, 'user_id': request.user.id})
 
 class SiteUserInline(InlineFormSetFactory):
     model = SiteUser
@@ -304,7 +312,7 @@ class SiteUserInline(InlineFormSetFactory):
 class EditUser(LoginRequiredMixin, UpdateWithInlinesView):
     model = User
     inlines = [ SiteUserInline ]
-    fields = ['username', 'email']
+    fields = ['username','first_name', 'last_name', 'email']
     title = 'Edit User'
     template_name_suffix = '_update'
     login_url = 'login'
