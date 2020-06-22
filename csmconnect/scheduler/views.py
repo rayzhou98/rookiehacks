@@ -104,7 +104,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 # redirect to a new URL:
-                return HttpResponseRedirect('dashboard')
+                return HttpResponseRedirect('/dashboard')
             else:
                 error = "Incorrect password."
                 return render(request, 'login.html', {'form': form, 'error': error})

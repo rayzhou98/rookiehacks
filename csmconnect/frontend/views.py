@@ -5,8 +5,10 @@ import json
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def dashboard(request):
+    print("Request user")
+    print(request.user)
     is_mentor = request.user.groups.filter(name="Mentor").exists()
     if is_mentor:
         meetings = Meeting.objects.filter(mentor=request.user)
