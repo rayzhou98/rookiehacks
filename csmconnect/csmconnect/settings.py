@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -21,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '61_9p39+kjh)0m0t6%inglpq^ntd%nhw_8cd85^j-0u8pgjf=$'
+SECRET_KEY = SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','61_9p39+kjh)0m0t6%inglpq^ntd%nhw_8cd85^j-0u8pgjf=$')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = []
 
@@ -124,6 +125,8 @@ USE_L10N = False
 
 USE_TZ = True
 
+CSRF_COOKIE_SECURE = True
+
 DATE_INPUT_FORMATS = ['%a, %b %d, %Y']
 
 DEFAULT_FROM_EMAIL = 'katiegu@berkeley.edu'
@@ -146,5 +149,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'scheduler/media'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+SESSION_COOKIE_SECURE = True
 
 STATIC_URL = '/static/'

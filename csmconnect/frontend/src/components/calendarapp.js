@@ -118,13 +118,14 @@ class Calendar extends Component {
     super(props)
     var days = [];
     var options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'};
-    var firstDay;
+
+    var d = new Date();
+    var day = d.getDay(),
+        diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+    var firstDay = new Date(d.setDate(diff));
     for (var i = 0; i < 7; i++) {
       var day = new Date();
-      if (i == 0) {
-        firstDay = day;
-      }
-      day.setDate(day.getDate() + i);
+      day.setDate(firstDay.getDate() + i);
       days.push(new Intl.DateTimeFormat('en-US', options).format(day));
     }
 

@@ -20,6 +20,9 @@ class SignUpForm(forms.Form):
             self.add_error('your_name', "Username is already taken.")
         return cd
 
+class ResubmitActivationEmailForm(forms.Form):
+    email = forms.EmailField(label='Your email:')
+
 class LoginForm(forms.Form):
     your_name = forms.CharField(label='Your name:', max_length=100)
     password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32)

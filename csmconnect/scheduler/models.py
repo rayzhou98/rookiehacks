@@ -10,6 +10,7 @@ class SiteUser(models.Model):
     short_description = models.fields.TextField(blank=True, null=True)
     bio = models.fields.TextField(blank=True, null=True)
     experience = models.fields.TextField(blank=True, null=True)
+    email_confirmed = models.fields.BooleanField(default=False)
 
 class Meeting(models.Model):
     date = models.fields.DateField()

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.edit import UpdateView, DeleteView
-from .forms import SignUpForm, LoginForm, AddMeetingForm, ChangePasswordForm
+from .forms import SignUpForm, LoginForm, AddMeetingForm, ChangePasswordForm, ResubmitActivationEmailForm
 from .models import Meeting, SiteUser
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group, User, Permission
@@ -16,6 +16,10 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from extra_views import UpdateWithInlinesView, InlineFormSetFactory
 from django.urls import reverse
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from .tokens import account_activation_token
+from django.contrib.sites.shortcuts import get_current_site
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -45,12 +49,23 @@ def sign_up(request):
                     group.save()
                 else:
                     group = Group.objects.get(name='Student')
-            user = User.objects.create_user(username=form.cleaned_data['your_name'], first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'], email=form.cleaned_data['your_email'],  password=form.cleaned_data['password'])
+            user = User.objects.create_user(username=form.cleaned_data['your_name'], first_name=form.cleaned_data['first_name'], last_name=form.cleaned_data['last_name'], email=form.cleaned_data['your_email'],  password=form.cleaned_data['password'], is_active=False)
             user.groups.add(group)
             group.save()
             site_user = SiteUser(user=user)
             site_user.save()
-            return HttpResponseRedirect('signupsuccess')
+            subject = 'Activate Your CSMConnect Account'
+            from_email = 'katiegu@berkeley.edu'  #Todo: Change to CSMConnect Admin email!
+            to = user.email
+            text = get_template('activate_email.txt')
+            html = get_template('activate_email.html')
+            user_name = user.first_name +  " " + user.last_name
+            current_site = get_current_site(request)
+            context = { 'user_name': user_name, 'domain': current_site.domain, 'uid': urlsafe_base64_encode(force_bytes(user.pk)), 'token': account_activation_token.make_token(user)}
+            text_content = text.render(context)
+            html_content = html.render(context)
+            send_mail(subject, text_content, from_email, [to], html_message=html_content, fail_silently=False)
+            return HttpResponseRedirect('accountactivationsent')
         else:
             return render(request, 'signup.html', {'form': form})
 
@@ -58,6 +73,23 @@ def sign_up(request):
     else:
         form = SignUpForm()
         return render(request, 'signup.html', {'form': form})
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.siteuser.email_confirmed = True
+        user.save()
+        login(request, user)
+        return HttpResponseRedirect('/dashboard')
+    else:
+        form = ResubmitActivationEmailForm()
+        return render(request, 'account_activation_invalid.html')
 
 def login_view(request):
     # if this is a POST request we need to process the form data
@@ -82,8 +114,8 @@ def login_view(request):
 
     return render(request, 'login.html', {'form': form})
 
-def signupsuccess(request):
-    return render(request, 'signupsuccess.html')
+def account_activation_sent(request):
+    return render(request, 'account_activation_sent.html')
 
 def mentor_check(user):
     return user.groups.filter(name="Mentor").exists()
@@ -192,7 +224,7 @@ class EditMeeting(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             text_content = text.render(context)
             html_content = html.render(context)
             send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
-            return super(EditMeeting, self).form_valid(form)
+        return super(EditMeeting, self).form_valid(form)
 
 class DeleteMeeting(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Meeting

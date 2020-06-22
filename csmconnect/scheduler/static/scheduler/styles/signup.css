@@ -1,0 +1,165 @@
+{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.box.flex {
+  display: flex;
+  justify-content: center;
+  background-color: #87CEFA;
+}
+
+.box {
+  padding: .5rem;
+  height: 900px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.03);
+  border-radius: 4px;
+
+  color: #84613D;
+  font-family: "Roboto", sans-serif;
+  background: #FDF9EA;
+  border-bottom: 1px solid #F9F2D6;
+  border-right: 1px solid #F9F2D6;
+
+}
+
+.box section {
+  width: 400px;
+  text-align: center;
+  background:#4B0082;
+  color: white;
+  margin: 10px;
+  margin-top: 75px;
+  padding: 5px;
+  border-style: solid;
+  border-color: black;
+  border-width: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submit-button {
+  background-color: #87CEFA; /* Blue */
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  border-style: solid;
+  border-color: black;
+  border-width: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  height: 60px;
+}
+
+/* Style the header */
+header {
+  background-color: #9370DB;
+  padding: 10px;
+  text-align: left;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 48px;
+}
+
+.title {
+  margin-left: 400px;
+}
+
+.signup-title {
+  margin-top: 60px;
+  font-size: 24px;
+}
+
+.container {
+  display: flex;
+  color: white;
+  font-size: 35px;
+}
+
+/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  height: 700px;
+}
+
+aside {
+  justify-content: flex-end;
+  padding: 20px;
+  width: 30%;
+  background-color: #4B0082;
+  color: white;
+  font-size: 20px;
+}
+
+
+/* Style the navigation menu */
+nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: black;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  justify-content: space-between;
+  color: white;
+  background-color: black;
+  font-family: "Roboto";
+
+}
+
+li a{
+  color: white;
+}
+
+
+/* Style the content */
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  background-color: #87CEFA;
+  padding: 20px;
+  font-size: 20px;
+}
+
+/* Style the footer */
+footer {
+  background-color: black;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  font-size: 15px;
+}
+
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+.errorlist {
+  list-style: none
+}
+
+li {
+  margin-right: 10px;
+}

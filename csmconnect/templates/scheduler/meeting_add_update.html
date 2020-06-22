@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="{% static 'scheduler/styles/addmeetinglayout.css' %}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
 $(function () {
     $("#id_date").datepicker({
@@ -52,7 +49,7 @@ $(function () {
         <input class="submit" type="submit" value="Submit">
     </form>
   {% else %}
-    <form action="{{ meeting_id }}" method="post">
+    <form action="/editmeeting/{{ meeting_id }}" method="post">
         {% csrf_token %}
         <div class="date-time">
           <div class="form-item">

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'scheduler/styles/accountactivationinvalidlayout.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="invalid-container">
+    <br></br>
+    <div class="invalid-message"> The account validation was not successful. Please try again. </div>
+    <form action="post">
+      <div class="form-item">
+        <label for="{{ form.email.id_for_label }}"> Email: {{ form.email }} </label>
+        {{ form.email.errors }}
+      </div>
+      <br></br>
+      <input class="submit-button" type="submit" value="Send Confirmation Email">
+    </form>
+    <br></br>
+  </div>
+</body>
+</html>

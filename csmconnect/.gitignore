@@ -1,3 +1,4 @@
 sendgrid.env
 .DS_Store
 ../.DS_Store
+settings.env

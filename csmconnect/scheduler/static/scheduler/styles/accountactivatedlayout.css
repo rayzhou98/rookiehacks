@@ -1,0 +1,10 @@
+.activated-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+}
+
+.activated-message {
+  color: #7167B9;
+}

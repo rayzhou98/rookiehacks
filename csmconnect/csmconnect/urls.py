@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path, include
+from django.urls import path, include, re_path
 from scheduler.views import HomeView
 from scheduler import views
 from django.conf.urls.static import static
@@ -27,7 +27,6 @@ urlpatterns = [
     path('', include('frontend.urls')),
     path('signup', views.sign_up, name='signup'),
     path('login', views.login_view, name='login'),
-    path('signupsuccess', views.signupsuccess, name='signupsuccess'),
     path('addmeeting', views.add_meeting, name='addmeeting'),
     path('meetingdetails/<int:pk>', views.meeting_details, name="meetingdetails"),
     path('editmeeting/<int:pk>', views.EditMeeting.as_view(), name="editmeeting"),
@@ -43,5 +42,7 @@ urlpatterns = [
     path('resetpassword', auth_views.PasswordResetView.as_view(template_name='reset_password.html'), name='resetpassword'),
     path('resetpassword/done', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
     path('resetpassword/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='reset_password_confirm.html'), name='password_reset_confirm'),
-    path('resetpassword/complete', auth_views.PasswordResetCompleteView.as_view(template_name='reset_password_complete.html'), name='password_reset_complete')
+    path('resetpassword/complete', auth_views.PasswordResetCompleteView.as_view(template_name='reset_password_complete.html'), name='password_reset_complete'),
+    path('accountactivationsent', views.account_activation_sent, name='account_activation_sent'),
+    re_path(r'activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate, name='activate')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
