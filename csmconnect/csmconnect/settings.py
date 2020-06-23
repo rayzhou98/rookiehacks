@@ -29,7 +29,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','61_9p39+kjh)0m0t6%inglpq^ntd%nh
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 
-ALLOWED_HOSTS = ['csmconnect.herokuapp.com']
+# ALLOWED_HOSTS = ['csmconnect.herokuapp.com']
+ALLOWED_HOSTS = []
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
@@ -56,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'csmconnect.urls'
