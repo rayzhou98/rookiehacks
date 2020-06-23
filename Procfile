@@ -1,1 +1,1 @@
-web: gunicorn csmconnect.wsgi --log-file -
+web: gunicorn --pythonpath csmconnect csmconnect.wsgi --log-file -
