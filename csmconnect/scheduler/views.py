@@ -20,7 +20,6 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
 from django.contrib.sites.shortcuts import get_current_site
-
 # Create your views here.
 class HomeView(TemplateView):
     template_name = "basic-88/index.html"
