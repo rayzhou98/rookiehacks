@@ -176,7 +176,7 @@ def join_meeting(request, pk):
         context = { 'student_name': student_name, 'mentor_name': mentor_name, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
         text_content = text.render(context)
         html_content = html.render(context)
-        send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
+        send_mail(subject, text_content, from_email, [to], html_message=html_content, fail_silently=False)
         meeting.save()
         return HttpResponseRedirect('/dashboard')
     else:
@@ -224,7 +224,7 @@ class EditMeeting(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             context = { 'student_name': student_name, 'mentor_name': mentor_name, 'meeting_date': form.cleaned_data.get('date'), 'start_time': form.cleaned_data.get('start_time'), 'end_time': form.cleaned_data.get('end_time'), 'location': form.cleaned_data.get('location'), 'description': form.cleaned_data.get('description'), 'mentor_email': meeting.mentor.email}
             text_content = text.render(context)
             html_content = html.render(context)
-            send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
+            send_mail(subject, text_content, from_email, [to], html_message=html_content, fail_silently=False)
         return super(EditMeeting, self).form_valid(form)
 
 class DeleteMeeting(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -258,7 +258,7 @@ class DeleteMeeting(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             context = { 'student_name': student_name, 'mentor_name': mentor_name,  'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'mentor_email': meeting.mentor.email}
             text_content = text.render(context)
             html_content = html.render(context)
-            send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
+            send_mail(subject, text_content, from_email, [to], html_message=html_content, fail_silently=False)
         return super(DeleteMeeting, self).delete(request, *args, **kwargs)
 
 def logout_view(request):
@@ -283,7 +283,7 @@ def leave_meeting(request, pk):
         context = { 'student_name': student_name, 'mentor_name': mentor_name, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'student_email': meeting.student.email}
         text_content = text.render(context)
         html_content = html.render(context)
-        send_mail(subject, text_content, from_email, [meeting.student.email], html_message=html_content, fail_silently=False)
+        send_mail(subject, text_content, from_email, [to], html_message=html_content, fail_silently=False)
         meeting.student = None
         meeting.save()
         return HttpResponseRedirect('/dashboard')
