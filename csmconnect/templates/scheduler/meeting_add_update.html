@@ -24,7 +24,7 @@ $(function () {
         {% csrf_token %}
         <div class="date-time">
           <div class="form-item">
-            <label id="id_date" for="{{ form.date.id_for_label }}"> Meeting date: {{ form.date }} </label>
+            <label for="{{ form.date.id_for_label }}"> Meeting date: {{ form.date }} </label>
             {{ form.date.errors }}
           </div>
           <div class="form-item">
