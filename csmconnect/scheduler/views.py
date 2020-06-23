@@ -20,6 +20,8 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
 from django.contrib.sites.shortcuts import get_current_site
+from django.conf import settings
+
 # Create your views here.
 class HomeView(TemplateView):
     template_name = "basic-88/index.html"
@@ -54,7 +56,7 @@ def sign_up(request):
             site_user = SiteUser(user=user)
             site_user.save()
             subject = 'Activate Your CSMConnect Account'
-            from_email = 'katiegu@berkeley.edu'  #Todo: Change to CSMConnect Admin email!
+            from_email = settings.DEFAULT_FROM_EMAIL
             to = user.email
             text = get_template('activate_email.txt')
             html = get_template('activate_email.html')
@@ -165,7 +167,7 @@ def join_meeting(request, pk):
         meeting.student = request.user
         #Sender: student, Receiver: mentor
         subject = meeting.student.username + ' Joined Your Meeting'
-        from_email = meeting.student.email
+        from_email = settings.DEFAULT_FROM_EMAIL
         to = meeting.mentor.email
         text = get_template('join_email.txt')
         html = get_template('join_email.html')
@@ -212,7 +214,7 @@ class EditMeeting(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         meeting = Meeting.objects.get(id=self.kwargs['pk'])
         subject = 'Meeting with ' + meeting.mentor.username + ' Updated'
-        from_email = meeting.mentor.email
+        from_email = settings.DEFAULT_FROM_EMAIL
         if meeting.student:
             to = meeting.student.email
             text = get_template('edit_email.txt')
@@ -246,7 +248,7 @@ class DeleteMeeting(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         meeting = Meeting.objects.get(id=self.kwargs['pk'])
         subject = 'Meeting with ' + meeting.mentor.username + ' Cancelled'
-        from_email = meeting.mentor.email
+        from_email = settings.DEFAULT_FROM_EMAIL
         if meeting.student:
             to = meeting.student.email
             text = get_template('delete_email.txt')
@@ -272,7 +274,7 @@ def leave_meeting(request, pk):
     meeting = Meeting.objects.get(id=pk)
     if request.method == "POST":
         subject = meeting.student.username + ' Left Your Meeting'
-        from_email = meeting.student.email
+        from_email = settings.DEFAULT_FROM_EMAIL
         to = meeting.mentor.email
         text = get_template('leave_email.txt')
         html = get_template('leave_email.html')
