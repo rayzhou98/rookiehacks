@@ -148,7 +148,7 @@ def add_meeting(request):
                 image_url = request.user.siteuser.image.url
             else:
                 image_url = '/static/scheduler/images/default-profile.png'
-            return render(request, 'scheduler/meeting_add_update.html', {'form': form, 'name': request.user.username, 'title': 'Add Meeting', 'user_id': request.user.id, 'image_url': image_url})
+            return render(request, 'scheduler/meeting_add_update.html', {'form': form, 'name': request.user.username, 'title': 'Add Meeting', 'is_add': True, 'user_id': request.user.id, 'image_url': image_url})
         else:
             open_meetings = Meeting.objects.filter(student=None)
             open_meetings = list(map(lambda meeting: {"date":  meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"),  'location': meeting.location , 'description': meeting.description, 'id': meeting.id, 'mentor': {'mentor_name': meeting.mentor.username, 'mentor_email': meeting.mentor.email}}, open_meetings))
