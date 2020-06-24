@@ -150,7 +150,7 @@ EMAIL_USE_TLS = True
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = 'scheduler/media'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
