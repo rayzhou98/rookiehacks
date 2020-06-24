@@ -150,12 +150,9 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
-MEDIA_URL = '/media/'
-# MEDIA_ROOT = 'scheduler/media'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'scheduler/media')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
