@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'csmconnect.urls'
@@ -132,6 +132,8 @@ USE_TZ = True
 
 DATE_INPUT_FORMATS = ['%a, %b %d, %Y']
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 DEFAULT_FROM_EMAIL = 'csmconnect5@gmail.com'
 
 TIME_INPUT_FORMATS = ['%I:%M %p']
@@ -150,7 +152,7 @@ EMAIL_USE_TLS = True
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = 'scheduler/media'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'scheduler/media')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
