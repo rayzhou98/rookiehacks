@@ -158,7 +158,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'scheduler/media')
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "scheduler/media")
+    os.path.join(BASE_DIR, "static")
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
