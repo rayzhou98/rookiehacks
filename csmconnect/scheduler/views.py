@@ -24,6 +24,7 @@ from django.conf import settings
 
 # Create your views here.
 class HomeView(TemplateView):
+    print(settings.MEDIA_ROOT)
     template_name = "basic-88/index.html"
 
 def sign_up(request):
