@@ -150,17 +150,13 @@ EMAIL_USE_TLS = True
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = 'scheduler/media'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'scheduler/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'scheduler/media/uploads')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
