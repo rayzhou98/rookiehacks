@@ -148,9 +148,9 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 # MEDIA_ROOT = 'scheduler/media'
-MEDIA_ROOT = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# MEDIA_ROOT = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
