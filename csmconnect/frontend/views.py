@@ -20,5 +20,5 @@ def dashboard(request):
     if request.user.siteuser.image:
         image_url = request.user.siteuser.image.url
     else:
-        image_url = '/static/scheduler/images/default-profile.png'
+        image_url = ''
     return render(request, 'frontend/calendar.html', {'name': request.user.username, 'meetings': json.dumps(meetings), 'is_mentor': is_mentor, 'dashboard': 'true', 'user_id': request.user.id, 'image_url': image_url})

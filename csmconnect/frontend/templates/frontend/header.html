@@ -16,7 +16,10 @@
     <h1 class="title"> Welcome, {{ name }}! </h1>
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-        <img class="dropdown-image" src="{{image_url}}"></img>
+        {% if image_url %}
+          <img class="dropdown-image" src="{{image_url}}"></img>
+        {% else %}
+          <img class="dropdown-image" src="{% static 'scheduler/images/default-profile.png' %}"></img>
       </button>
       <ul class="dropdown-menu pull-right">
         <li><a href="/dashboard">Dashboard</a></li>

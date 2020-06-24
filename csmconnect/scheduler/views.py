@@ -137,7 +137,7 @@ def add_meeting(request):
             if request.user.siteuser.image:
                 image_url = request.user.siteuser.image.url
             else:
-                image_url = '/static/scheduler/images/default-profile.png'
+                image_url = ''''
             return render(request, 'scheduler/meeting_add_update.html', {'form': form, 'name': request.user.username, 'non_field_errors': non_field_errors, 'title': 'Add Meeting', 'user_id': request.user.id, 'image_url': image_url})
     else:
         is_mentor = request.user.groups.filter(name="Mentor").exists()
@@ -146,7 +146,7 @@ def add_meeting(request):
             if request.user.siteuser.image:
                 image_url = request.user.siteuser.image.url
             else:
-                image_url = '/static/scheduler/images/default-profile.png'
+                image_url = ''''
             return render(request, 'scheduler/meeting_add_update.html', {'form': form, 'name': request.user.username, 'title': 'Add Meeting', 'is_add': True, 'user_id': request.user.id, 'image_url': image_url})
         else:
             open_meetings = Meeting.objects.filter(student=None)
@@ -155,7 +155,7 @@ def add_meeting(request):
             if request.user.siteuser.image:
                 image_url = request.user.siteuser.image.url
             else:
-                image_url = '/static/scheduler/images/default-profile.png'
+                image_url = ''''
             return render(request, 'frontend/calendar.html', {'meetings': json.dumps(open_meetings), 'name': request.user.username, 'is_mentor': is_mentor, 'dashboard': 'false', 'is_add': True, 'user_id': request.user.id, 'image_url': image_url})
 
 @login_required(login_url='login')
@@ -182,7 +182,7 @@ def join_meeting(request, pk):
         if request.user.siteuser.image:
             image_url = request.user.siteuser.image.url
         else:
-            image_url = '/static/scheduler/images/default-profile.png'
+            image_url = ''''
         return render(request, 'join_meeting_confirm.html', {'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time': meeting.end_time.strftime("%-I:%M %p"), 'meeting_location': meeting.location, 'meeting_id': pk, 'name': request.user.username, 'user_id': request.user.id, 'image_url': image_url})
 
 class EditMeeting(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -204,7 +204,7 @@ class EditMeeting(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.request.user.siteuser.image:
             context['image_url'] = self.request.user.siteuser.image.url
         else:
-            context['image_url'] = '/static/scheduler/images/default-profile.png'
+            context['image_url'] = ''''
         return context
 
     def test_func(self):
@@ -238,7 +238,7 @@ class DeleteMeeting(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user.siteuser.image:
             context['image_url'] = self.request.user.siteuser.image.url
         else:
-            context['image_url'] = '/static/scheduler/images/default-profile.png'
+            context['image_url'] = ''''
         return context
 
     def test_func(self):
@@ -290,7 +290,7 @@ def leave_meeting(request, pk):
         if request.user.siteuser.image:
             image_url = request.user.siteuser.image.url
         else:
-            image_url = '/static/scheduler/images/default-profile.png'
+            image_url = ''''
         return render(request, 'leave_meeting_confirm.html', {'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time.strftime("%-I:%M %p"), 'end_time':  meeting.end_time.strftime("%-I:%M %p"), 'meeting_location': meeting.location, 'meeting_id': pk, 'name': request.user.username, 'user_id': request.user.id, 'image_url': image_url})
 
 @login_required(login_url='login')
@@ -299,7 +299,7 @@ def public_profile(request, pk):
     if user.siteuser.image:
         image_url = user.siteuser.image.url
     else:
-        image_url = '/static/scheduler/images/default-profile.png'
+        image_url = ''''
     if user.siteuser.short_description:
         short_description = user.siteuser.short_description
     else:
@@ -321,7 +321,7 @@ def profile(request, pk):
     if user.siteuser.image:
         image_url = user.siteuser.image.url
     else:
-        image_url = '/static/scheduler/images/default-profile.png'
+        image_url = ''''
     if user.siteuser.short_description:
         short_description = user.siteuser.short_description
     else:
@@ -357,7 +357,7 @@ class EditUser(LoginRequiredMixin, UpdateWithInlinesView):
         if self.request.user.siteuser.image:
             context['image_url'] = self.request.user.siteuser.image.url
         else:
-            context['image_url'] = '/static/scheduler/images/default-profile.png'
+            context['image_url'] = 'csmconnect-assets.s3.amazonaws.com/scheduler/images/default-profile.png'
         return context
 
     def get_success_url(self, **kwargs):
@@ -375,7 +375,7 @@ def meeting_details(request, pk):
     if request.user.siteuser.image:
         image_url = request.user.siteuser.image.url
     else:
-        image_url = '/static/scheduler/images/default-profile.png'
+        image_url = ''
     if is_mentor:
         return render(request, 'meeting_details.html', {'name': request.user.username, 'meeting_date': meeting.date.strftime('%a, %b %d, %Y'), 'start_time': meeting.start_time, 'end_time': meeting.end_time, 'meeting_location': meeting.location, 'description': meeting.description, 'student': meeting.student, 'is_mentor': is_mentor, 'id': pk, 'user_id': request.user.id, 'image_url': image_url})
     else:
@@ -386,7 +386,7 @@ def change_password(request, pk):
     if request.user.siteuser.image:
         image_url = request.user.siteuser.image.url
     else:
-        image_url = '/static/scheduler/images/default-profile.png'
+        image_url = ''
     if request.method == 'POST':
         user = User.objects.get(id=pk)
         form = ChangePasswordForm(user, request.POST)
