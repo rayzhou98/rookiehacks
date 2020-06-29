@@ -10,6 +10,10 @@ body {
   color: black;
 }
 
+.title {
+  margin-left: 40px;
+}
+
 .title-container, .links-container {
   display: flex;
   flex-direction: row;
@@ -18,7 +22,7 @@ body {
 
 a {
   text-decoration: none;
-  margin-right: 10px;
+  margin-right: 90px;
   color: black;
 }
 
