@@ -27,7 +27,7 @@ ul {
   list-style: none;
 }
 
-ul li:first-child {
+.sidebar-title {
   font-weight: bolder;
   list-style: none;
 }
@@ -40,4 +40,11 @@ ul li:before {
   font-size: 30px;
   font-weight: bolder;
   margin-top: 100px;
+}
+
+.copyright {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 110px;
 }
