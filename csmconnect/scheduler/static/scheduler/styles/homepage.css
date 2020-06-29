@@ -20,18 +20,15 @@ body {
 
 .sidebar-container {
   margin-left: 70px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
   font-size: 20px;
 }
 
-.sidebar-title {
-  font-weight: bolder;
-  /* margin-left: 55px; */
+ul {
+  list-style: none;
 }
 
-ul {
+ul li:first-child {
+  font-weight: bolder;
   list-style: none;
 }
 
