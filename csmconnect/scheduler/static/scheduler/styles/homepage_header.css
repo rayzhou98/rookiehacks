@@ -14,10 +14,17 @@ body {
   margin-left: 40px;
 }
 
-.title-container, .links-container {
+.title-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
 }
 
 a {
