@@ -6,7 +6,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   color: black;
 }
 
@@ -18,14 +18,16 @@ body {
 
 a {
   text-decoration: none;
+  margin-right: 10px;
   color: black;
 }
 
 .separator {
   border-left: 6px solid #CBCBCB;
-  height: 500px;
+  height: 100px;
 }
 
 .slogan {
   color: #CBCBCB;
+  margin-left: 10px;
 }
