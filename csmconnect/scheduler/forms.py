@@ -24,8 +24,8 @@ class ResubmitActivationEmailForm(forms.Form):
     email = forms.EmailField(label='Your email:')
 
 class LoginForm(forms.Form):
-    your_name = forms.CharField(label='Your name:', max_length=100, attrs={'placeholder': 'Username'})
-    password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32, attrs={'placeholder': 'Password'})
+    your_name = forms.CharField(label='Your name:', max_length=100, widget=forms.TextInput(attrs={'placeholder':'Username'}))
+    password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32, widget=forms.PasswordInput(attrs={'placeholder':'Password'}))
 
 
 class AddMeetingForm(forms.Form):
