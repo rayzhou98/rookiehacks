@@ -1,0 +1,17 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.separator {
+  border-left: 6px solid #CBCBCB;
+  height: 500px;
+}
+
+.slogan {
+  color: #CBCBCB;
+}

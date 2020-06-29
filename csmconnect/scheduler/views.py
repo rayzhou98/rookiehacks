@@ -24,7 +24,7 @@ from django.conf import settings
 
 # Create your views here.
 class HomeView(TemplateView):
-    template_name = "basic-88/index.html"
+    template_name = "homepage_header.html"
 
 def sign_up(request):
     # if this is a POST request we need to process the form data
