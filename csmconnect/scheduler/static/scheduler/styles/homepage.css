@@ -10,8 +10,14 @@ body {
   background-color: rgba(195, 187, 255, 0.5);
 }
 
+.sidebar-container {
+  margin-left: 70px;
+  font-size: 20px;
+}
+
 .sidebar-title {
   font-weight: bold;
+  margin-left: 70px;
 }
 
 ul {
