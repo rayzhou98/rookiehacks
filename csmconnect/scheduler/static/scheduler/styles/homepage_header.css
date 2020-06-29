@@ -5,11 +5,13 @@ body {
 .header-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
   color: black;
 }
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 .separator {
