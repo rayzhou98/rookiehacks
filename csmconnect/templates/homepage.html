@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'scheduler/styles/homepage.css' %}">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+</head>
+<body>
+  {% include 'homepage_header.html' %}
+  <div class="image-container">
+    <img class="homepage-image" src="{% static 'scheduler/images/logo.png' %}"></img>
+    <div class="sidebar-container">
+      <div class="sidebar-title">
+        Relieve stress from rigorous tech courses:
+      </div>
+      <ul class="sidebar-items">
+        <li> Video chat sessions with CSM mentors in a user-friendly platform. </li>
+        <li> Manage stress by engaging with like-minded peers who have insightful advice. </li>
+        <li> Freedom to choose mentors and flexible scheduling options. </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

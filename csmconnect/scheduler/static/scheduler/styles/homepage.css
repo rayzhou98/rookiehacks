@@ -1,0 +1,22 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: rgba(195, 187, 255, 0.5);
+}
+
+.image-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sidebar-title {
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li:before {
+  content: "\2192"
+}
