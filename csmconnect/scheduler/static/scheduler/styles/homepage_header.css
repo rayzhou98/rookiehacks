@@ -5,6 +5,11 @@ body {
 .header-container {
   display: flex;
   flex-direction: row;
+  color: black;
+}
+
+.links {
+  text-decoration: none;
 }
 
 .separator {
