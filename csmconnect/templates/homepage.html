@@ -8,27 +8,29 @@
 </head>
 <body>
   {% include 'homepage_header.html' %}
-  <div class="homepage-container">
-    <div class="image-container">
-      <img class="homepage-image" src="{% static 'scheduler/images/stress_balloon.png' %}"></img>
-      <div class="sidebar-container">
-        <ul class="sidebar-items">
-          <li class="sidebar-title"> Relieve stress from rigorous tech courses: </li>
-          <br></br>
-          <li> Video chat sessions with CSM mentors in a user-friendly platform. </li>
-          <br></br>
-          <li> Manage stress by engaging with like-minded peers who have insightful advice. </li>
-          <br></br>
-          <li> Freedom to choose mentors and flexible scheduling options. </li>
-        </ul>
+  <div class="homepage-outer-container">
+    <div class="homepage-inner-container">
+      <div class="image-container">
+        <img class="homepage-image" src="{% static 'scheduler/images/stress_balloon.png' %}"></img>
+        <div class="sidebar-container">
+          <ul class="sidebar-items">
+            <div class="sidebar-title"> Relieve stress from rigorous tech courses: </div>
+            <br></br>
+            <li> Video chat sessions with CSM mentors in a user-friendly platform. </li>
+            <br></br>
+            <li> Manage stress by engaging with like-minded peers who have insightful advice. </li>
+            <br></br>
+            <li> Freedom to choose mentors and flexible scheduling options. </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-container">
+        You are not alone!
       </div>
     </div>
-    <div class="footer-container">
-      You are not alone!
+    <div class="copyright">
+      Copyright 2020 CSM Connect
     </div>
-  </div>
-  <div class="copyright">
-    Copyright 2020 CSM Connect
   </div>
 </body>
 </html>
