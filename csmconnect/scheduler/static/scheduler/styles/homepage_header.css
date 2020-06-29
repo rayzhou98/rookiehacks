@@ -10,6 +10,12 @@ body {
   color: black;
 }
 
+.title-container, .links-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 a {
   text-decoration: none;
   color: black;
