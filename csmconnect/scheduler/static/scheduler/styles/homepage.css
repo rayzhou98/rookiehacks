@@ -14,11 +14,15 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 100px;
 }
 
 .sidebar-container {
-  margin-left: 70px;
+  /* margin-left: 70px; */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   font-size: 20px;
 }
 
@@ -38,4 +42,5 @@ ul li:before {
 .footer-container {
   font-size: 30px;
   font-weight: bolder;
+  margin-top: 100px;
 }
