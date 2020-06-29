@@ -28,12 +28,12 @@ body {
 
 
 ul li:before {
-  content: "\2192"
+  content: "\2192";
 }
 
 .sidebar-title {
   font-weight: bolder;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 .footer-container {
