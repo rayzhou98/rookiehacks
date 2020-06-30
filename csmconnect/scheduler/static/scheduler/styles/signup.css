@@ -19,8 +19,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 400px;
-  width: 600px;
+  height: 600px;
+  width: 800px;
   margin-top: 150px;
   margin-bottom: 150px;
 }
@@ -68,7 +68,7 @@ input {
   background-color: #E5E5E5 !important;
   border: none;
   height: 50px;
-  width: 400px;
+  width: 300px;
   text-align: center;
   font-size: 16px;
 }
