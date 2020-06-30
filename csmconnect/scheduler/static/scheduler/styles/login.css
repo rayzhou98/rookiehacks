@@ -29,6 +29,13 @@ body {
   align-items: center;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .login-title {
   font-weight: bold;
   font-size: 30px;
@@ -41,10 +48,15 @@ body {
   margin-bottom: 10px;
 }
 
-/* .form-item {
-  background: #E5E5E5;
+input {
   border-radius: 25px;
-} */
+  background-color: #E5E5E5 !important;
+  border: none;
+  height: 50px;
+  width: 400px;
+  text-align: center;
+  font-size: 16px;
+}
 
 .submit-button {
   background-color: #685FAD;
