@@ -1,165 +1,101 @@
-{
-  box-sizing: border-box;
-}
-
 body {
   font-family: "Roboto", sans-serif;
 }
 
-.box.flex {
-  display: flex;
-  justify-content: center;
-  background-color: #87CEFA;
+.signup-outer-container {
+  background-color: rgba(195, 187, 255, 0.5);
 }
 
-.box {
-  padding: .5rem;
-  height: 900px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.03);
-  border-radius: 4px;
-
-  color: #84613D;
-  font-family: "Roboto", sans-serif;
-  background: #FDF9EA;
-  border-bottom: 1px solid #F9F2D6;
-  border-right: 1px solid #F9F2D6;
-
-}
-
-.box section {
-  width: 400px;
-  text-align: center;
-  background:#4B0082;
-  color: white;
-  margin: 10px;
-  margin-top: 75px;
-  padding: 5px;
-  border-style: solid;
-  border-color: black;
-  border-width: 20px;
+.signup-inner-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.submit-button {
-  background-color: #87CEFA; /* Blue */
+.signup-box {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 600px;
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+.signup-title {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.signup-details {
+  color: rgba(0, 0, 0, 0.34);
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-inputs-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border-radius: 25px;
+  background-color: #E5E5E5 !important;
   border: none;
-  color: black;
+  height: 50px;
+  width: 400px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.submit-button {
+  background-color: #685FAD !important;
+  color: white;
+  border-radius: 25px;
   padding: 15px 32px;
-  border-style: solid;
-  border-color: black;
-  border-width: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   height: 60px;
+  margin-bottom: 10px;
+  width: 150px;
 }
 
-/* Style the header */
-header {
-  background-color: #9370DB;
-  padding: 10px;
-  text-align: left;
-  color: white;
-  font-family: "Roboto", sans-serif;
+.forgot-password {
+  color: rgba(0, 0, 0, 0.34);
+  font-size: 12px;
+  text-decoration: none;
 }
 
-.title-container {
+.copyright {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
-  font-size: 48px;
-}
-
-.title {
-  margin-left: 400px;
-}
-
-.signup-title {
-  margin-top: 60px;
-  font-size: 24px;
-}
-
-.container {
-  display: flex;
-  color: white;
-  font-size: 35px;
-}
-
-/* Container for flexboxes */
-section {
-  display: -webkit-flex;
-  height: 700px;
-}
-
-aside {
-  justify-content: flex-end;
-  padding: 20px;
-  width: 30%;
-  background-color: #4B0082;
-  color: white;
-  font-size: 20px;
-}
-
-
-/* Style the navigation menu */
-nav {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  background: black;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  justify-content: space-between;
-  color: white;
-  background-color: black;
-  font-family: "Roboto";
-
-}
-
-li a{
-  color: white;
-}
-
-
-/* Style the content */
-article {
-  -webkit-flex: 3;
-  -ms-flex: 3;
-  flex: 3;
-  background-color: #87CEFA;
-  padding: 20px;
-  font-size: 20px;
-}
-
-/* Style the footer */
-footer {
-  background-color: black;
-  padding: 10px;
-  text-align: center;
-  color: white;
-  font-size: 15px;
-}
-
-/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
-@media (max-width: 600px) {
-  section {
-    -webkit-flex-direction: column;
-    flex-direction: column;
-  }
-}
-
-.errorlist {
-  list-style: none
-}
-
-li {
-  margin-right: 10px;
+  margin-top: 110px;
 }

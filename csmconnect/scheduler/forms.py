@@ -3,13 +3,13 @@ import datetime
 from django.contrib.auth.models import User
 
 class SignUpForm(forms.Form):
-    your_name = forms.CharField(label='Your name:', max_length=100)
-    first_name = forms.CharField(label='First name:', max_length=100)
-    last_name = forms.CharField(label='Last name:', max_length=100)
-    your_email = forms.EmailField(label='Your email:')
-    password = forms.CharField(label='Enter password:', widget=forms.PasswordInput, min_length=8, max_length=32)
-    confirm_password = forms.CharField(label='Confirm password:', widget=forms.PasswordInput, min_length=8, max_length=32)
-    account_type = forms.ChoiceField(label='Choose account type:', choices=[('M', 'Mentor'), ('S', 'Student')])
+    your_name = forms.CharField(label='Your name:', max_length=100, widget=forms.TextInput(attrs={'placeholder':'Username'}))
+    first_name = forms.CharField(label='First name:', max_length=100, widget=forms.TextInput(attrs={'placeholder':'First Name'}))
+    last_name = forms.CharField(label='Last name:', max_length=100, widget=forms.TextInput(attrs={'placeholder':'Last Name'}))
+    your_email = forms.EmailField(label='Your email:', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    password = forms.CharField(label='Enter password:', widget=forms.PasswordInput(attrs={'placeholder':'Password'}), min_length=8, max_length=32)
+    confirm_password = forms.CharField(label='Confirm password:', widget=forms.PasswordInput(attrs={'placeholder':'Confirm Password'}), min_length=8, max_length=32)
+    account_type = forms.TypedChoiceField(label='Choose account type:', choices=[('M', 'Mentor'), ('S', 'Student')], empty_value='Account Type')
     def clean(self):
         cd = self.cleaned_data
         password = cd.get('password')
