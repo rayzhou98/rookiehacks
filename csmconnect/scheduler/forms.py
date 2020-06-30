@@ -1,6 +1,7 @@
 from django import forms
 import datetime
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordResetForm
 
 class SignUpForm(forms.Form):
     your_name = forms.CharField(label='Your name:', max_length=100, widget=forms.TextInput(attrs={'placeholder':'Username'}))
@@ -20,6 +21,9 @@ class SignUpForm(forms.Form):
             self.add_error('your_name', "Username is already taken.")
         return cd
 
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(label='Your email:', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    
 class ResubmitActivationEmailForm(forms.Form):
     email = forms.EmailField(label='Your email:', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
 
