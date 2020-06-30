@@ -34,7 +34,7 @@ body {
 .signup-details {
   color: rgba(0, 0, 0, 0.34);
   font-size: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .signup-form {
@@ -56,11 +56,16 @@ form {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .signup-inputs {
   display: flex;
   flex-direction: column;
+}
+
+.signup-inputs.one {
+  margin-right: 20px;
 }
 
 input {
@@ -73,6 +78,14 @@ input {
   font-size: 16px;
 }
 
+select {
+  border-radius: 25px;
+  background-color: #E5E5E5 !important;
+  border: none;
+  height: 50px;
+  width: 200px;
+}
+
 .submit-button {
   background-color: #685FAD !important;
   color: white;
@@ -83,6 +96,7 @@ input {
   display: inline-block;
   font-size: 16px;
   height: 60px;
+  margin-top: 20px;
   margin-bottom: 10px;
   width: 150px;
 }

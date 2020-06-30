@@ -9,7 +9,7 @@ class SignUpForm(forms.Form):
     your_email = forms.EmailField(label='Your email:', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
     password = forms.CharField(label='Enter password:', widget=forms.PasswordInput(attrs={'placeholder':'Password'}), min_length=8, max_length=32)
     confirm_password = forms.CharField(label='Confirm password:', widget=forms.PasswordInput(attrs={'placeholder':'Confirm Password'}), min_length=8, max_length=32)
-    account_type = forms.TypedChoiceField(label='Choose account type:', choices=[('M', 'Mentor'), ('S', 'Student')], empty_value='Account Type')
+    account_type = forms.ChoiceField(label='Choose account type:', choices=[('', 'Account Type'), ('M', 'Mentor'), ('S', 'Student')])
     def clean(self):
         cd = self.cleaned_data
         password = cd.get('password')

@@ -17,7 +17,7 @@
           <form action="signup" method="post">
             {% csrf_token %}
             <div class="signup-inputs-container">
-              <div class="signup-inputs">
+              <div class="signup-inputs one">
                 <div class="form-item">
                   <label for="{{ form.first_name.id_for_label }}"> {{ form.first_name }} </label>
                   {{ form.first_name.errors }}
@@ -34,7 +34,7 @@
                 </div>
                 <br></br>
               </div>
-              <div class="signup-inputs">
+              <div class="signup-inputs two">
                 <div class="form-item">
                   <label for="{{ form.last_name.id_for_label }}"> {{ form.last_name }} </label>
                   {{ form.last_name.errors }}
@@ -52,7 +52,6 @@
                 <br></br>
               </div>
             </div>
-            <br></br>
             <div class="form-item">
               <label for="{{ form.account_type.id_for_label }}"> {{ form.account_type }} </label>
               {{ form.account_type.errors }}
