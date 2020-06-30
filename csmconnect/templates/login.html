@@ -10,24 +10,26 @@
   {% include 'homepage_header.html' %}
   <div class="login-container">
     <div class="login-box">
-      <div class="login-title">Log In</div>
-      <div class="login-details">Enter your details below to continue.</div>
-      <form action="login" method="post">
-        {% csrf_token %}
-        <div class="form-item">
-          <label for="{{ form.your_name.id_for_label }}"> {{ form.your_name }} </label>
-           {{ form.your_name.errors }}
-        </div>
-        <br></br>
-        <div class="form-item">
-          <label for="{{ form.password.id_for_label }}"> {{ form.password }} </label>
-          {{ form.password.errors }}
+      <div class="login-form">
+        <div class="login-title">Log In</div>
+        <div class="login-details">Enter your details below to continue.</div>
+        <form action="login" method="post">
+          {% csrf_token %}
+          <div class="form-item">
+            <label for="{{ form.your_name.id_for_label }}"> {{ form.your_name }} </label>
+             {{ form.your_name.errors }}
+          </div>
           <br></br>
-          {{ error }}
-        </div>
-        <input class="submit-button" type="submit" value="Login">
-      </form>
-      <a class="forgot-password" href="/resetpassword"> Forgot Password? </a>
+          <div class="form-item">
+            <label for="{{ form.password.id_for_label }}"> {{ form.password }} </label>
+            {{ form.password.errors }}
+            <br></br>
+            {{ error }}
+          </div>
+          <input class="submit-button" type="submit" value="Login">
+        </form>
+        <a class="forgot-password" href="/resetpassword"> Forgot Password? </a>
+      </div>
     </div>
   </div>
 </body>
