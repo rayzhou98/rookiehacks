@@ -59,7 +59,7 @@ input {
 }
 
 .submit-button {
-  background-color: #685FAD;
+  background-color: #685FAD !important;
   color: white;
   border-radius: 25px;
   padding: 15px 32px;
@@ -69,6 +69,7 @@ input {
   font-size: 16px;
   height: 60px;
   margin-bottom: 10px;
+  width: 200px;
 }
 
 .forgot-password {
