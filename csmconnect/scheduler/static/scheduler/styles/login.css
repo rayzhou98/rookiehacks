@@ -77,3 +77,10 @@ input {
   font-size: 12px;
   text-decoration: none;
 }
+
+.copyright {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 110px;
+}
