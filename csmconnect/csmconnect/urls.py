@@ -40,7 +40,7 @@ urlpatterns = [
     path('editprofile/<int:pk>', views.EditUser.as_view(), name="editprofile"),
     path('publicprofile/<int:pk>', views.public_profile, name="publicprofile"),
     path('changepassword/<int:pk>', views.change_password, name='changepassword'),
-    path('resetpassword', auth_views.PasswordResetView.as_view(template_name='reset_password.html', {'form': CustomPasswordResetForm}), name='resetpassword'),
+    path('resetpassword', auth_views.PasswordResetView.as_view(template_name='reset_password.html'), name='resetpassword', kwargs={'form': CustomPasswordResetForm}),
     path('resetpassword/done', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
     path('resetpassword/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='reset_password_confirm.html'), name='password_reset_confirm'),
     path('resetpassword/complete', auth_views.PasswordResetCompleteView.as_view(template_name='reset_password_complete.html'), name='password_reset_complete'),
