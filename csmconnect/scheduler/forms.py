@@ -21,7 +21,7 @@ class SignUpForm(forms.Form):
         return cd
 
 class ResubmitActivationEmailForm(forms.Form):
-    email = forms.EmailField(label='Your email:')
+    email = forms.EmailField(label='Your email:', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
 
 class LoginForm(forms.Form):
     your_name = forms.CharField(label='Your name:', max_length=100, widget=forms.TextInput(attrs={'placeholder':'Username'}))
