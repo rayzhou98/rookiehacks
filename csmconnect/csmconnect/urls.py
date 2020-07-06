@@ -27,6 +27,7 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('', include('frontend.urls')),
     path('signup', views.sign_up, name='signup'),
+    path('about', views.about, name='about'),
     path('login', views.login_view, name='login'),
     path('addmeeting', views.add_meeting, name='addmeeting'),
     path('meetingdetails/<int:pk>', views.meeting_details, name="meetingdetails"),

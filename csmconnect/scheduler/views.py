@@ -401,3 +401,6 @@ def change_password(request, pk):
     else:
         form = ChangePasswordForm(request.user)
         return render(request, 'password_change.html', {'name': request.user.username, 'form': form, 'user_id': request.user.id, 'image_url': image_url})
+
+def about(request):
+    return render(request, 'about.html')

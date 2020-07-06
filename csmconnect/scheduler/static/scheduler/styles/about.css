@@ -1,0 +1,32 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.about-outer-container {
+  background-color: rgba(195, 187, 255, 0.5);
+}
+
+.about-inner-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-container {
+  background-color: white;
+}
+
+.title {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.copyright {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 110px;
+}
