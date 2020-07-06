@@ -7,13 +7,15 @@
 .profile-title-inner {
   margin-left: 800px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
 }
 
 .name {
   font-weight: bold;
   margin-bottom: 20px;
+  margin-left: 60px;
+  margin-top: 20px;
 }
 
 .email {
