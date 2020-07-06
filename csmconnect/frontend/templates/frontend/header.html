@@ -5,15 +5,13 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="{% static 'frontend/styles/header.css' %}">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
   <div class="header-container">
-    <img class="logo" src="{% static 'scheduler/images/logo.png' %}"></img>
-    <h1 class="title"> Welcome, {{ name }}! </h1>
+    <div class="title-container">
+      <img class="logo" src="{% static 'scheduler/images/logo.png' %}"></img>
+      <h1 class="title"> CSM Connect </h1>
+    </div>
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
         {% if image_url %}
@@ -28,6 +26,7 @@
         <li><a href="/logout">Logout</a></li>
       </ul>
     </div>
+    <div class="username"> {{ name }} </div>
   </div>
 </body>
 </html>

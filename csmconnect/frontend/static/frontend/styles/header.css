@@ -1,18 +1,23 @@
-.header-container {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
+body {
   font-family: 'Roboto', sans-serif;
 }
 
+.header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: black;
+}
+
 .title {
-  display: inline-block;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 48px;
-  color: #7167B9;
+  margin-left: 40px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .button {
