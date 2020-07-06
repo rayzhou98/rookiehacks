@@ -336,7 +336,7 @@ def profile(request, pk):
     else:
         experience = ''
     first_and_last = user.first_name + " " + user.last_name
-    return render(request, 'profile.html', {'name': request.user.username, 'first_and_last': first_and_last, 'image_url': image_url, 'short_description': short_description, 'bio': bio, 'experience': experience, 'user_id': request.user.id})
+    return render(request, 'profile.html', {'name': request.user.username, 'first_and_last': first_and_last, 'image_url': image_url, 'short_description': short_description, 'bio': bio, 'experience': experience, 'user_id': request.user.id, 'email': request.user.email})
 
 class SiteUserInline(InlineFormSetFactory):
     model = SiteUser

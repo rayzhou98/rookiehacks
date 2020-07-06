@@ -1,73 +1,13 @@
-.profile-outer-container {
-  display: flex;
+body {
   font-family: 'Roboto', sans-serif;
-  color: white;
 }
 
-.profile-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.profile-item.sidebar {
-  margin-left: 100px;
-  margin-right: 150px;
-}
-
-.profile-sidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #7167B9;
-  border-radius: 25px;
-  height: 800px;
-  width: 300px;
-}
-
-.profile-sidebar-title {
-  margin-top: 20px;
-  font-size: 24px;
-}
-
-.profile-picture {
-  border-radius: 50%;
-  height: 200px;
-  width: 200px;
-}
-
-.button.edit {
-  height: 50px;
-  width: 200px;
-}
-
-.profile-description {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.item {
-  background: #7167B9;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  height: 400px;
-  width: 800px;
-}
-
-.item.bio {
+.name {
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
-.profile-title {
-  text-align: center;
-  color: white;
-  margin-top: 20px;
-}
-
-.profile-section {
-  margin-left: 10px;
-  margin-top: 10px;
+.email {
+  color: #89879C;
+  margin-bottom: 20px;
 }
