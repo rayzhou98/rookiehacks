@@ -1,5 +1,7 @@
-body {
+.profile-title-outer {
+  background-color: rgba(195, 187, 255, 0.5);
   font-family: 'Roboto', sans-serif;
+  font-size: 20px;
 }
 
 .name {
@@ -8,6 +10,11 @@ body {
 }
 
 .email {
+  color: #89879C;
+  margin-bottom: 20px;
+}
+
+.description {
   color: #89879C;
   margin-bottom: 20px;
 }

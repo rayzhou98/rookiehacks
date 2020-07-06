@@ -8,10 +8,12 @@
 <body>
   {% include 'frontend/header.html' %}
   <div class="profile-outer-container">
-    <div class="profile-title">
-      <div class="name"> {{ first_and_last }} </div>
-      <div class="email"> Email: {{ email }} </div>
-      <div class="description"> Description: {{ short_description }} </div>
+    <div class="profile-title-outer">
+      <div class="profile-title-inner">
+        <div class="name"> {{ first_and_last }} </div>
+        <div class="email"> Email: {{ email }} </div>
+        <div class="description"> Description: {{ short_description }} </div>
+      </div>
     </div>
   </div>
 </body>
