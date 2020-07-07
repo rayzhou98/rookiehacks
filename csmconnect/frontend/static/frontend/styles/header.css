@@ -17,6 +17,10 @@
   align-items: center;
 }
 
+.page-name {
+  font-size: 30px;
+}
+
 .button {
   background-color: #7167B9;
   border: none;
@@ -28,10 +32,6 @@
   margin: 4px 2px !important;
   cursor: pointer !important;
   border-radius: 25px;
-}
-
-.dropdown {
-  margin-right: -60px;
 }
 
 .dropdown-image {
