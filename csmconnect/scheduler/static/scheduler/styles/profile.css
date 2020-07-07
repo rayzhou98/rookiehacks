@@ -58,7 +58,7 @@
   width: 300px;
 }
 
-.bio-experience-container, .bio-experience-child {
+.bio-experience-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
