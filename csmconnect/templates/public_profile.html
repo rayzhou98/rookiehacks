@@ -7,40 +7,32 @@
 </head>
 <body>
   {% include 'frontend/header.html' %}
-  <hr class="solid">
   <div class="profile-outer-container">
-    <div class="profile-item sidebar">
-      <div class="profile-sidebar">
-        <div class="profile-sidebar-title">
-          Profile
-        </div>
-        <br></br>
-        {% if image_url %}
-          <img class="dropdown-image" src="{{image_url}}"></img>
-        {% else %}
-          <img class="dropdown-image" src="{% static 'scheduler/images/default-profile.png' %}"></img>
-        {% endif %}
-        <br></br>
-        <div class="profile-description">
-          <div class="name">
-            {{ first_and_last }}
-          </div>
-          <br></br>
-          <div class="short-description">
-            {{ short_description }}
-          </div>
-          <br></br>
-        </div>
-       </div>
-    </div>
-    <div class="profile-item bio-experience">
-      <div class="item bio">
-        <div class="profile-title bio">Biography</div>
-        <div class="profile-section bio"> {{ bio }}</div>
+    <div class="profile-title-outer">
+      <div class="profile-title-inner">
+        <div class="name"> {{ first_and_last }} </div>
+        <div class="description"> Description: {{ short_description }} </div>
       </div>
-      <div class="item experience">
-        <div class="profile-title experience">Experience</div>
-        <div class="profile-section experience"> {{ experience }}</div>
+    </div>
+    <div class="profile-sidebar">
+      {% if image_url %}
+        <img class="profile-sidebar-image" src="{{image_url}}"></img>
+      {% else %}
+        <img class="profile-sidebar-image" src="{% static 'scheduler/images/default-profile.png' %}"></img>
+      {% endif %}
+    </div>
+    <div class="bio-experience-container">
+      <div class="bio-experience-child biography">
+        <div class="bio-experience-title biography">
+          Biography
+        </div>
+        <div class="bio-experience-contents biography"> {{ bio }} </div>
+      </div>
+      <div class="bio-experience-child experience">
+        <div class="bio-experience-title experience">
+          Experience
+        </div>
+        <div class="bio-experience-contents experience">  {{ experience }} </div>
       </div>
     </div>
   </div>

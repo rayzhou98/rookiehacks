@@ -117,16 +117,24 @@ class Calendar extends Component {
   constructor(props) {
     super(props)
     var days = [];
-    var options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'};
-
+    var options = {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'};
+    var firstDayOptions = {month: 'short', day: 'numeric'};
+    var lastDayOptions = {month: 'short', day: 'numeric', year: 'numeric'};
     var d = new Date();
     var day = d.getDay(),
         diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
     var firstDay = new Date(d.setDate(diff));
+    var dateRange = "";
     for (var i = 0; i < 7; i++) {
       var day = new Date();
       day.setDate(firstDay.getDate() + i);
       days.push(new Intl.DateTimeFormat('en-US', options).format(day));
+      if (i == 0) {
+        dateRange = dateRange + new Intl.DateTimeFormat('en-US', firstDayOptions).format(day) + "-";
+      }
+      if (i == 6) {
+        dateRange += new Intl.DateTimeFormat('en-US', lastDayOptions).format(day);
+      }
     }
 
     var times = [];
@@ -153,7 +161,8 @@ class Calendar extends Component {
       dashboard: document.currentScript.getAttribute('dashboard'),
       days: days,
       times: times,
-      firstDay: firstDay
+      firstDay: firstDay,
+      dateRange: dateRange
     }
   }
 
@@ -184,13 +193,20 @@ class Calendar extends Component {
   changeDates(isNext) {
     var days = [];
     var options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'};
+    var firstDayOptions = {month: 'short', day: 'numeric'};
+    var lastDayOptions = {month: 'short', day: 'numeric', year: 'numeric'};
     var firstDay;
+    var dateRange = "";
     if (isNext) {
       for (var i = 1; i < 8; i++) {
         var day = new Date();
         day.setDate(this.state.firstDay.getDate() + 6 + i);
         if (i == 1) {
           firstDay = day;
+          dateRange = dateRange + new Intl.DateTimeFormat('en-US', firstDayOptions).format(day) + "-";
+        }
+        if (i == 7) {
+          dateRange += new Intl.DateTimeFormat('en-US', lastDayOptions).format(day);
         }
         days.push(new Intl.DateTimeFormat('en-US', options).format(day));
       }
@@ -201,13 +217,18 @@ class Calendar extends Component {
         day.setDate(this.state.firstDay.getDate() - i);
         if (i == 7) {
           firstDay = day;
+          dateRange = dateRange + new Intl.DateTimeFormat('en-US', firstDayOptions).format(day) + "-";
+        }
+        if (i == 1) {
+          dateRange += new Intl.DateTimeFormat('en-US', lastDayOptions).format(day);
         }
         days.push(new Intl.DateTimeFormat('en-US', options).format(day));
       }
     }
     this.setState({
       days: days,
-      firstDay: firstDay
+      firstDay: firstDay,
+      dateRange: dateRange
     });
   }
 
@@ -215,8 +236,9 @@ class Calendar extends Component {
      return (
        <div className="outer-container">
          <div className="nav-container">
-            <div className="button" onClick={() => this.changeDates(false)}>Prev</div>
-            <div className="button" onClick={() => this.changeDates(true)}>Next</div>
+            <div className="nav-button prev" onClick={() => this.changeDates(false)}>&#8592;</div>
+            <div className="date-range"> {this.state.dateRange} </div>
+            <div className="nav-button next" onClick={() => this.changeDates(true)}>&#10230;</div>
          </div>
           <div className="grid-container">
             {this.loadEvents()}

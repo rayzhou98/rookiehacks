@@ -1,8 +1,12 @@
+.calendar-background {
+  background-color: #C3BBFF;
+}
+
 .button {
-  background-color: #7167B9;
+  background-color: white;
   font-family: 'Roboto', sans-serif;
   border: none;
-  color: white;
+  color: black;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -10,12 +14,14 @@
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 25px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .nav-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: row;
+  font-size: 20px;
 }
 
 .calendar-header {
@@ -40,20 +46,20 @@
 }
 
 .grid-element {
-  border: 1px solid #E5E5E5;
+  border: 1px solid black;
   width: auto;
   padding: 20px;
 }
 
 .time {
   font-size: 12px;
-  color: #7167B9;
+  color: black;
 }
 
 .day-of-week {
   text-align: center;
   font-size: 18px;
-  color: #7167B9;
+  color: black;
 }
 
 a:visited {

@@ -2,24 +2,25 @@
 <html lang="en">
 <head>
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'frontend/styles/dashboardlayout.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'frontend/styles/dashboard_layout.css' %}">
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
   {% include 'frontend/header.html' %}
-  <hr class="solid">
-  {% if dashboard == 'true' %}
-    <div class="calendar-header">
-      <p class="my-meetings"> My Meetings </p>
-      <a class="button" href="addmeeting"> Add Meeting </a>
+  <div class="calendar-background">
+    {% if dashboard == 'true' %}
+      <div class="calendar-header">
+        <p class="my-meetings"> My Meetings </p>
+        <a class="button" href="addmeeting"> Add Meeting </a>
+      </div>
+    {% else %}
+      <div class="calendar-header">
+        <p class="my-meetings"> Open Meetings </p>
+      </div>
+    {% endif %}
+    <div id="calendar">
+      <!-- React will load here -->
     </div>
-  {% else %}
-    <div class="calendar-header">
-      <p class="my-meetings"> Open Meetings </p>
-    </div>
-  {% endif %}
-  <div id="calendar">
-    <!-- React will load here -->
   </div>
 </body>
 {% load static %}

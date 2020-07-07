@@ -21,4 +21,4 @@ def dashboard(request):
         image_url = request.user.siteuser.image.url
     else:
         image_url = ''
-    return render(request, 'frontend/calendar.html', {'name': request.user.username, 'meetings': json.dumps(meetings), 'is_mentor': is_mentor, 'dashboard': 'true', 'user_id': request.user.id, 'image_url': image_url})
+    return render(request, 'frontend/calendar.html', {'name': request.user.username, 'page_name': 'My Meetings', 'meetings': json.dumps(meetings), 'is_mentor': is_mentor, 'dashboard': 'true', 'user_id': request.user.id, 'image_url': image_url})
