@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="profile-sidebar">
-      % if image_url %}
+      {% if image_url %}
         <img class="profile-sidebar-image" src="{{image_url}}"></img>
       {% else %}
         <img class="profile-sidebar-image" src="{% static 'scheduler/images/default-profile.png' %}"></img>
