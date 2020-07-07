@@ -15,6 +15,15 @@
         <div class="description"> Description: {{ short_description }} </div>
       </div>
     </div>
+    <div class="profile-sidebar">
+      % if image_url %}
+        <img class="profile-sidebar-image" src="{{image_url}}"></img>
+      {% else %}
+        <img class="profile-sidebar-image" src="{% static 'scheduler/images/default-profile.png' %}"></img>
+      {% endif %}
+      <a class="button edit" href="/editprofile/{{ user_id }}">Edit</a>
+      <a class="button change-password" href="/changepassword/{{ user_id }}">Change Password</a>
+    </div>
   </div>
 </body>
 </html>

@@ -27,3 +27,21 @@
   color: #89879C;
   margin-bottom: 20px;
 }
+
+.profile-picture {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button.edit {
+  height: 50px;
+  width: 200px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+}
