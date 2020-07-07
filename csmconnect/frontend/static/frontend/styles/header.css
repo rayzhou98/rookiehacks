@@ -30,6 +30,10 @@
   border-radius: 25px;
 }
 
+.dropdown {
+  margin-right: -100px;
+}
+
 .dropdown-image {
   border-radius: 50%;
   height: 70px;

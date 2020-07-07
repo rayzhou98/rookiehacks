@@ -30,18 +30,24 @@
 
 .profile-sidebar-image {
   border-radius: 50%;
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
+  margin-bottom: 40px;
 }
 
 .profile-sidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 800px;
+  margin-top: -100px;
 }
 
 .button.edit {
   height: 50px;
   width: 200px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  background-color: white !important;
+  color: black !important;
+  margin-bottom: 20px !important;
 }
