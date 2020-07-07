@@ -24,6 +24,20 @@
       <a class="button edit" href="/editprofile/{{ user_id }}">Edit Profile</a>
       <a class="button change-password" href="/changepassword/{{ user_id }}">Change Password</a>
     </div>
+    <div class="bio-experience-container">
+      <div class="bio-experience-child biography">
+        <div class="bio-experience-title biography">
+          Biography
+        </div>
+        <div class="bio-experience-contents biography"> {{ bio }} </div>
+      </div>
+      <div class="bio-experience-child experience">
+        <div class="bio-experience-title experience">
+          Experience
+        </div>
+        <div class="bio-experience-contents experience">  {{ experience }} </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
