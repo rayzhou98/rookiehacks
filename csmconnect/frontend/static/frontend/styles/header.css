@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   color: black;
 }
 
@@ -34,6 +34,12 @@
   border-radius: 25px;
 }
 
+.dropdown {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
 .dropdown-image {
   border-radius: 50%;
   height: 70px;
@@ -50,6 +56,7 @@
 }
 
 .dropdown-menu>li>a {
+  font-family: 'Roboto', sans-serif !important;
   color: #7167B9 !important;
 }
 

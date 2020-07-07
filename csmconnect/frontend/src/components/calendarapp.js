@@ -238,7 +238,7 @@ class Calendar extends Component {
          <div className="nav-container">
             <div className="nav-button prev" onClick={() => this.changeDates(false)}>&#8592;</div>
             <div className="date-range"> {this.state.dateRange} </div>
-            <div className="nav-button next" onClick={() => this.changeDates(true)}>&#8594;;</div>
+            <div className="nav-button next" onClick={() => this.changeDates(true)}>&#8594;</div>
          </div>
           <div className="grid-container">
             {this.loadEvents()}

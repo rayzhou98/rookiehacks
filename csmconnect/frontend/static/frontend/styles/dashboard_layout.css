@@ -6,15 +6,17 @@
   background-color: white;
   font-family: 'Roboto', sans-serif;
   border: none;
-  color: black;
+  color: black !important;
   padding: 15px 32px;
   text-align: center;
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 25px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .nav-container {
@@ -56,7 +58,7 @@
 }
 
 .grid-element {
-  border: 1px solid black;
+  border: 1px solid  #D0D0D0;
   background-color: white;
   width: auto;
   padding: 20px;
@@ -74,5 +76,5 @@
 }
 
 a:visited {
-  color: #E5E5E5;
+  color: black;
 }
