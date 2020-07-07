@@ -19,6 +19,7 @@
 
 .page-name {
   font-size: 30px;
+  margin-left: -140px;
 }
 
 .button {
@@ -51,8 +52,6 @@
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  margin-left: 750px;
-  margin-top: 20px;
 }
 
 .dropdown-menu>li>a {
